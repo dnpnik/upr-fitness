@@ -1,0 +1,212 @@
+{
+  "Shoulder_Circles": {
+    "name": "Shoulder Circles",
+    "files": [
+      "upr_assets/exercises/Shoulder_Circles_0.jpg",
+      "upr_assets/exercises/Shoulder_Circles_1.jpg"
+    ]
+  },
+  "Arm_Circles": {
+    "name": "Arm Circles",
+    "files": [
+      "upr_assets/exercises/Arm_Circles_0.jpg",
+      "upr_assets/exercises/Arm_Circles_1.jpg"
+    ]
+  },
+  "Rope_Jumping": {
+    "name": "Rope Jumping",
+    "files": [
+      "upr_assets/exercises/Rope_Jumping_0.jpg",
+      "upr_assets/exercises/Rope_Jumping_1.jpg"
+    ]
+  },
+  "Dumbbell_Bench_Press": {
+    "name": "Dumbbell Bench Press",
+    "files": [
+      "upr_assets/exercises/Dumbbell_Bench_Press_0.jpg",
+      "upr_assets/exercises/Dumbbell_Bench_Press_1.jpg"
+    ]
+  },
+  "Incline_Dumbbell_Press": {
+    "name": "Incline Dumbbell Press",
+    "files": [
+      "upr_assets/exercises/Incline_Dumbbell_Press_0.jpg",
+      "upr_assets/exercises/Incline_Dumbbell_Press_1.jpg"
+    ]
+  },
+  "Dips_-_Chest_Version": {
+    "name": "Dips - Chest Version",
+    "files": [
+      "upr_assets/exercises/Dips_-_Chest_Version_0.jpg",
+      "upr_assets/exercises/Dips_-_Chest_Version_1.jpg"
+    ]
+  },
+  "Dumbbell_Flyes": {
+    "name": "Dumbbell Flyes",
+    "files": [
+      "upr_assets/exercises/Dumbbell_Flyes_0.jpg",
+      "upr_assets/exercises/Dumbbell_Flyes_1.jpg"
+    ]
+  },
+  "Bicycling_Stationary": {
+    "name": "Bicycling, Stationary",
+    "files": [
+      "upr_assets/exercises/Bicycling_Stationary_0.jpg",
+      "upr_assets/exercises/Bicycling_Stationary_1.jpg"
+    ]
+  },
+  "Standing_Hip_Circles": {
+    "name": "Standing Hip Circles",
+    "files": [
+      "upr_assets/exercises/Standing_Hip_Circles_0.jpg",
+      "upr_assets/exercises/Standing_Hip_Circles_1.jpg"
+    ]
+  },
+  "Knee_Circles": {
+    "name": "Knee Circles",
+    "files": [
+      "upr_assets/exercises/Knee_Circles_0.jpg",
+      "upr_assets/exercises/Knee_Circles_1.jpg"
+    ]
+  },
+  "Ankle_Circles": {
+    "name": "Ankle Circles",
+    "files": [
+      "upr_assets/exercises/Ankle_Circles_0.jpg",
+      "upr_assets/exercises/Ankle_Circles_1.jpg"
+    ]
+  },
+  "Goblet_Squat": {
+    "name": "Goblet Squat",
+    "files": [
+      "upr_assets/exercises/Goblet_Squat_0.jpg",
+      "upr_assets/exercises/Goblet_Squat_1.jpg"
+    ]
+  },
+  "Romanian_Deadlift": {
+    "name": "Romanian Deadlift",
+    "files": [
+      "upr_assets/exercises/Romanian_Deadlift_0.jpg",
+      "upr_assets/exercises/Romanian_Deadlift_1.jpg"
+    ]
+  },
+  "Dumbbell_Rear_Lunge": {
+    "name": "Dumbbell Rear Lunge",
+    "files": [
+      "upr_assets/exercises/Dumbbell_Rear_Lunge_0.jpg",
+      "upr_assets/exercises/Dumbbell_Rear_Lunge_1.jpg"
+    ]
+  },
+  "Standing_Dumbbell_Calf_Raise": {
+    "name": "Standing Dumbbell Calf Raise",
+    "files": [
+      "upr_assets/exercises/Standing_Dumbbell_Calf_Raise_0.jpg",
+      "upr_assets/exercises/Standing_Dumbbell_Calf_Raise_1.jpg"
+    ]
+  },
+  "Dumbbell_Shoulder_Press": {
+    "name": "Dumbbell Shoulder Press",
+    "files": [
+      "upr_assets/exercises/Dumbbell_Shoulder_Press_0.jpg",
+      "upr_assets/exercises/Dumbbell_Shoulder_Press_1.jpg"
+    ]
+  },
+  "Side_Lateral_Raise": {
+    "name": "Side Lateral Raise",
+    "files": [
+      "upr_assets/exercises/Side_Lateral_Raise_0.jpg",
+      "upr_assets/exercises/Side_Lateral_Raise_1.jpg"
+    ]
+  },
+  "Seated_Bent-Over_Rear_Delt_Raise": {
+    "name": "Seated Bent-Over Rear Delt Raise",
+    "files": [
+      "upr_assets/exercises/Seated_Bent-Over_Rear_Delt_Raise_0.jpg",
+      "upr_assets/exercises/Seated_Bent-Over_Rear_Delt_Raise_1.jpg"
+    ]
+  },
+  "External_Rotation": {
+    "name": "External Rotation",
+    "files": [
+      "upr_assets/exercises/External_Rotation_0.jpg",
+      "upr_assets/exercises/External_Rotation_1.jpg"
+    ]
+  },
+  "Walking_Treadmill": {
+    "name": "Walking, Treadmill",
+    "files": [
+      "upr_assets/exercises/Walking_Treadmill_0.jpg",
+      "upr_assets/exercises/Walking_Treadmill_1.jpg"
+    ]
+  },
+  "Cat_Stretch": {
+    "name": "Cat Stretch",
+    "files": [
+      "upr_assets/exercises/Cat_Stretch_0.jpg",
+      "upr_assets/exercises/Cat_Stretch_1.jpg"
+    ]
+  },
+  "Ab_Roller": {
+    "name": "Ab Roller",
+    "files": [
+      "upr_assets/exercises/Ab_Roller_0.jpg",
+      "upr_assets/exercises/Ab_Roller_1.jpg"
+    ]
+  },
+  "Flat_Bench_Lying_Leg_Raise": {
+    "name": "Flat Bench Lying Leg Raise",
+    "files": [
+      "upr_assets/exercises/Flat_Bench_Lying_Leg_Raise_0.jpg",
+      "upr_assets/exercises/Flat_Bench_Lying_Leg_Raise_1.jpg"
+    ]
+  },
+  "Hyperextensions_Back_Extensions": {
+    "name": "Hyperextensions (Back Extensions)",
+    "files": [
+      "upr_assets/exercises/Hyperextensions_Back_Extensions_0.jpg",
+      "upr_assets/exercises/Hyperextensions_Back_Extensions_1.jpg"
+    ]
+  },
+  "Bent-Arm_Dumbbell_Pullover": {
+    "name": "Bent-Arm Dumbbell Pullover",
+    "files": [
+      "upr_assets/exercises/Bent-Arm_Dumbbell_Pullover_0.jpg",
+      "upr_assets/exercises/Bent-Arm_Dumbbell_Pullover_1.jpg"
+    ]
+  },
+  "Dumbbell_Bicep_Curl": {
+    "name": "Dumbbell Bicep Curl",
+    "files": [
+      "upr_assets/exercises/Dumbbell_Bicep_Curl_0.jpg",
+      "upr_assets/exercises/Dumbbell_Bicep_Curl_1.jpg"
+    ]
+  },
+  "Hammer_Curls": {
+    "name": "Hammer Curls",
+    "files": [
+      "upr_assets/exercises/Hammer_Curls_0.jpg",
+      "upr_assets/exercises/Hammer_Curls_1.jpg"
+    ]
+  },
+  "Pushups": {
+    "name": "Pushups",
+    "files": [
+      "upr_assets/exercises/Pushups_0.jpg",
+      "upr_assets/exercises/Pushups_1.jpg"
+    ]
+  },
+  "Chair_Lower_Back_Stretch": {
+    "name": "Chair Lower Back Stretch",
+    "files": [
+      "upr_assets/exercises/Chair_Lower_Back_Stretch_0.jpg",
+      "upr_assets/exercises/Chair_Lower_Back_Stretch_1.jpg"
+    ]
+  },
+  "Trail_Running_Walking": {
+    "name": "Trail Running/Walking",
+    "files": [
+      "upr_assets/exercises/Trail_Running_Walking_0.jpg",
+      "upr_assets/exercises/Trail_Running_Walking_1.jpg"
+    ]
+  }
+}

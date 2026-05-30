@@ -1,6 +1,4 @@
-free_exercise_db_README.md
-free_exercises.json
-test_ex.jpg
-UPR_without_Collagen_II.md
-upr-site-screenshot.png
-wger_named_images.txt
+# Local backups and private diary exports
+*.bak.html
+UPR_*.bak.html
+upr_assets/diary/diary/

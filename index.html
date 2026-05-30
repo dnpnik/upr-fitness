@@ -1,57 +1,2132 @@
 <!doctype html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UPR - ужин</title>
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <main class="screen" aria-label="UPR список на ужин">
-      <section class="supplement-card">
-        <h1><span aria-hidden="true">🍽️</span> Во время ужина 19:30</h1>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>УПР — тренировки, добавки и рецепты</title>
+<style>
+:root{
+  --bg:#0a0f16; --surface:#111820; --surface-2:#17212b; --card:#121c26; --card-strong:#1c2835;
+  --text:#f6f7f9; --muted:#aab4c0; --soft:#d7dee7; --line:rgba(215,222,231,.16);
+  --blue:#4f8cff; --teal:#27c1a0; --green:#3cc96f; --amber:#f4b740; --rose:#ef5b73;
+  --shadow:0 18px 50px rgba(0,0,0,.32); --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:linear-gradient(135deg,#090e15 0%,#101720 46%,#0b1714 100%);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--text)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),transparent 80%)}
+button,input,select{font:inherit}.container{position:relative;max-width:1340px;margin:0 auto;padding:22px}.hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(340px,.7fr);gap:16px;align-items:stretch;margin-bottom:14px}.hero-card,.card{background:rgba(18,28,38,.88);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);backdrop-filter:blur(12px)}.hero-card{padding:22px}.kicker{color:#80dcca;font-weight:850;text-transform:uppercase;font-size:12px;letter-spacing:0}h1{margin:10px 0 8px;font-size:44px;line-height:1.04;letter-spacing:0}h2{margin:0 0 14px;font-size:24px;line-height:1.15;letter-spacing:0}.sub{color:var(--muted);font-size:15px;line-height:1.55;max-width:72ch}.controls{display:grid;grid-template-columns:repeat(4,minmax(140px,1fr));gap:10px;margin-top:18px}label.small{display:block;color:var(--soft);font-size:12px;font-weight:800;margin-bottom:6px}select,input[type=date],.search input{width:100%;border:1px solid var(--line);background:#0c131b;color:var(--text);border-radius:12px;padding:11px 12px;font-size:15px;outline:none}select:focus,input:focus,button:focus-visible{outline:3px solid rgba(79,140,255,.45);outline-offset:2px}.status-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}.stat{min-height:86px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.035);padding:12px}.stat b{display:block;color:#f7d38c;font-size:12px;text-transform:uppercase;letter-spacing:0;margin-bottom:6px}.stat span{display:block;color:var(--soft);line-height:1.35;font-weight:750}.tabs{position:sticky;top:0;z-index:20;display:flex;gap:8px;flex-wrap:wrap;overflow-x:visible;overscroll-behavior-x:contain;margin:12px 0 16px;padding:10px 0;background:rgba(10,15,22,.96);border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 12px 28px rgba(0,0,0,.18)}.tab{border:1px solid var(--line);background:#0e151d;color:#d9e4ef;border-radius:12px;padding:11px 15px;font-weight:900;cursor:pointer;white-space:nowrap;flex:0 0 auto}.tab.active{background:linear-gradient(135deg,var(--blue),var(--teal));border-color:transparent;color:white}.grid{display:grid;grid-template-columns:minmax(360px,.95fr) minmax(420px,1.05fr);gap:16px}.card{padding:18px}.toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:10px 0 12px}.switchline{display:inline-flex;align-items:center;gap:8px;color:var(--soft);font-weight:750;font-size:14px}.pillrow{display:flex;gap:8px;flex-wrap:wrap;margin:9px 0}.pill{background:#0d141c;border:1px solid var(--line);border-radius:999px;padding:7px 10px;color:#d7dee7;font-size:13px;font-weight:800}.progress{height:12px;background:#0b1118;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-top:8px}.bar{height:100%;background:linear-gradient(90deg,var(--blue),var(--green),var(--amber));width:0%;transition:width .25s ease}.timer-card{background:linear-gradient(180deg,#101922,#0b1118);border:1px solid rgba(79,140,255,.26);border-radius:18px;padding:18px;text-align:center}.timer-label{font-weight:1000;color:#91b7ff;font-size:13px;margin-bottom:8px;text-transform:uppercase;letter-spacing:0}.timer{font-variant-numeric:tabular-nums;font-size:118px;line-height:.92;font-weight:1000;text-shadow:0 14px 46px rgba(39,193,160,.22)}.btns{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin-top:12px}.quicktimers{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}.quicktimers button{font-size:15px;padding:13px}.timer-hint{color:var(--muted);font-size:13px;margin-top:10px;line-height:1.45}button{border:0;border-radius:12px;padding:12px 14px;font-weight:900;color:white;background:#253241;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.16);transition:transform .12s ease,filter .12s ease,background .12s ease}button:hover{filter:brightness(1.06)}button:active{transform:translateY(1px)}button.primary{background:linear-gradient(135deg,#3f7ff0,#21a7c8)}button.good{background:linear-gradient(135deg,#15986f,#36bd5b)}button.warn{background:linear-gradient(135deg,#bd7b16,#e05d2c)}button.danger{background:linear-gradient(135deg,#b91c48,#e34d68)}button.ghost{background:#0d141c;border:1px solid var(--line);color:#e6edf5}.exercise-list{display:grid;gap:9px;margin-top:12px}.exercise{padding:13px;border:1px solid var(--line);border-radius:14px;background:#0d141c;cursor:pointer;transition:border-color .14s ease,background .14s ease,transform .14s ease}.exercise:hover{border-color:rgba(79,140,255,.75);transform:translateY(-1px)}.exercise.active{background:linear-gradient(135deg,rgba(79,140,255,.22),rgba(39,193,160,.14));border-color:rgba(79,140,255,.85)}.exercise.done{border-color:rgba(60,201,111,.65)}.ex-title{font-size:16px;font-weight:1000;margin-bottom:7px}.meta{display:flex;gap:7px;flex-wrap:wrap;color:#cbd5df;font-size:13px}.meta span{background:#111a23;border:1px solid var(--line);border-radius:999px;padding:5px 8px}.sets{display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:9px;margin:14px 0}.setbtn{min-height:54px;font-size:15px;padding:12px;border-radius:13px;background:#253241;border:1px solid var(--line)}.setbtn.done{background:linear-gradient(135deg,#15986f,#3cc96f)}.setbtn.active{outline:3px solid rgba(79,140,255,.65)}.note{color:#d4dde7;line-height:1.55;background:#0d141c;border:1px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}.supp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.supp-block{background:#0d141c;border:1px solid var(--line);border-radius:14px;padding:13px}.supp-block h3{margin:0 0 9px;font-size:16px;color:#b9d0ff}.check{display:flex;align-items:center;gap:9px;padding:8px 6px;border-radius:10px;color:#e5ebf2}.check:hover{background:rgba(255,255,255,.045)}input[type=checkbox]{width:20px;height:20px;accent-color:var(--green);flex:0 0 auto}.check.done span{text-decoration:line-through;color:#95e7b0}.calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;margin-top:10px}.daycell{position:relative;border:1px solid var(--line);background:#0d141c;border-radius:10px;padding:8px 4px;text-align:center;cursor:pointer;color:#d7dee7;font-size:12px;min-height:48px}.daycell.active{background:linear-gradient(135deg,var(--blue),var(--teal));color:white}.daycell.has{border-color:rgba(60,201,111,.8)}.daycell small{display:block;color:#9ba8b6;margin-top:2px}.daycell.active small{color:white}.hidden{display:none!important}.search{min-width:min(360px,100%);flex:1}.footer{color:#9aa6b4;font-size:13px;text-align:center;margin:22px 0}.empty{border:1px dashed rgba(215,222,231,.25);border-radius:14px;padding:18px;color:var(--muted);text-align:center}.alarm-banner{position:fixed;left:50%;top:18px;transform:translateX(-50%);z-index:9999;background:linear-gradient(135deg,#ef4444,#f59e0b);color:#fff;border:2px solid rgba(255,255,255,.72);box-shadow:0 18px 70px rgba(239,68,68,.45);border-radius:18px;padding:16px 22px;font-size:22px;font-weight:1000;display:none;text-align:center}.alarm-banner.show{display:block;animation:pulseAlarm .7s ease-in-out infinite alternate}@keyframes pulseAlarm{from{transform:translateX(-50%) scale(1)}to{transform:translateX(-50%) scale(1.035)}}.recipe-grid{display:grid;grid-template-columns:1fr;gap:12px}.recipe-card{background:#0d141c;border:1px solid var(--line);border-radius:16px;padding:15px}.recipe-card h3{margin:0 0 10px;font-size:19px;color:#b9d0ff;letter-spacing:0}.recipe-quick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:10px 0}.mini{background:#121b24;border:1px solid var(--line);border-radius:12px;padding:11px}.mini b{display:block;color:#f7d38c;margin-bottom:5px}.recipe-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}.recipe-step{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:12px;padding:11px;line-height:1.45}.recipe-step b{color:#9ee6c8}.fat-note{background:linear-gradient(135deg,rgba(244,183,64,.12),rgba(39,193,160,.05));border:1px solid rgba(244,183,64,.28);border-radius:14px;padding:12px;margin-top:12px;color:#ffe2a3}.recipe-table{width:100%;border-collapse:separate;border-spacing:0 7px}.recipe-table td,.recipe-table th{padding:9px 10px;background:#0d141c;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.recipe-table th{color:#b9d0ff;text-align:left}.recipe-table td:first-child,.recipe-table th:first-child{border-left:1px solid var(--line);border-radius:10px 0 0 10px}.recipe-table td:last-child,.recipe-table th:last-child{border-right:1px solid var(--line);border-radius:0 10px 10px 0}.recipe-step ul,.recipe-step ol{margin:8px 0 0 18px;padding:0}.recipe-step li{margin:7px 0;line-height:1.45}
+.voice-panel{margin-top:16px;border:1px solid var(--line);background:rgba(13,20,28,.72);border-radius:14px;padding:12px}.voice-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.voice-head b{display:block;color:#f7d38c;font-size:13px;text-transform:uppercase;letter-spacing:0}.voice-head span{display:block;color:var(--muted);font-size:13px;margin-top:3px}.voice-controls{display:grid;grid-template-columns:minmax(140px,1.1fr) repeat(3,minmax(120px,1fr));gap:10px;align-items:end}.voice-controls input[type=range]{width:100%;accent-color:var(--teal)}button.compact{padding:9px 12px;box-shadow:none}.timer.ending{color:#ffe08a;text-shadow:0 14px 46px rgba(244,183,64,.28)}.timer.done-flash{animation:doneFlash .42s ease-in-out 5 alternate}@keyframes doneFlash{from{transform:scale(1);color:#fff}to{transform:scale(1.035);color:#ffe08a}}
+.tech-card{margin-top:14px;border:1px solid var(--line);border-radius:16px;background:rgba(13,20,28,.86);overflow:hidden}.tech-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding:13px 14px;border-bottom:1px solid var(--line)}.tech-head b{display:block;color:#f7d38c;text-transform:uppercase;font-size:12px;letter-spacing:0}.tech-head span{display:block;color:var(--muted);font-size:13px;line-height:1.4;margin-top:4px}.tech-source{color:#9aa6b4;font-size:12px;white-space:nowrap}.tech-layout{display:grid;grid-template-columns:minmax(220px,.85fr) minmax(0,1.15fr);gap:14px;padding:14px}.tech-gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-content:start}.tech-figure{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#eef2f7}.tech-figure img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}.tech-figure figcaption{padding:7px 8px;background:#0d141c;color:#cbd5df;font-size:12px;font-weight:800}.tech-section{margin:0 0 12px}.tech-section h3{margin:0 0 7px;color:#b9d0ff;font-size:15px}.tech-section ul,.tech-section ol{margin:0;padding-left:19px}.tech-section li{margin:6px 0;line-height:1.45;color:#e1e8ef}.tech-cues{display:flex;gap:7px;flex-wrap:wrap}.cue{border:1px solid rgba(39,193,160,.28);background:rgba(39,193,160,.08);color:#aaf0dc;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900}
+.mini-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.timer-options{display:flex;gap:9px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}.diary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:12px}.diary-field{background:#0d141c;border:1px solid var(--line);border-radius:14px;padding:12px}.diary-field label{display:block;color:#f7d38c;font-size:12px;font-weight:900;text-transform:uppercase;margin-bottom:7px}.diary-field input,.diary-field select,.diary-note textarea{width:100%;border:1px solid var(--line);background:#0a1118;color:var(--text);border-radius:12px;padding:10px 11px;outline:none}.diary-note{margin-top:12px}.diary-note textarea{min-height:130px;resize:vertical;line-height:1.45}.readiness{display:grid;grid-template-columns:minmax(180px,.35fr) minmax(0,1fr);gap:12px;margin-top:12px}.readiness-score{display:grid;place-items:center;min-height:126px;border:1px solid rgba(39,193,160,.28);border-radius:16px;background:linear-gradient(135deg,rgba(39,193,160,.12),rgba(79,140,255,.08))}.readiness-score strong{font-size:42px;line-height:1}.readiness-score span{color:var(--muted);font-size:13px;font-weight:800}.readiness-list{margin:0;padding-left:19px;color:#e1e8ef;line-height:1.5}.readiness-list li{margin:6px 0}
+.diary-save{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:12px;border:1px solid var(--line);border-radius:14px;background:rgba(13,20,28,.72);padding:12px}.diary-save b{display:block;color:#f7d38c;font-size:12px;text-transform:uppercase}.diary-save span{display:block;color:var(--muted);font-size:13px;margin-top:4px}.diary-save .btns{margin:0;justify-content:flex-end}
+.cream-grid{display:grid;grid-template-columns:minmax(320px,.9fr) minmax(0,1.1fr);gap:14px;margin-top:14px}.cream-panel{background:#0d141c;border:1px solid var(--line);border-radius:16px;padding:14px}.cream-panel h3{margin:0 0 10px;color:#b9d0ff;font-size:17px}.cream-routine{display:grid;gap:9px}.cream-task{display:grid;grid-template-columns:auto 92px minmax(0,1fr);gap:10px;align-items:start;border:1px solid var(--line);background:rgba(255,255,255,.035);border-radius:13px;padding:10px}.cream-task.done{border-color:rgba(60,201,111,.6);background:rgba(60,201,111,.08)}.cream-task.skip{opacity:.78}.cream-time{color:#f7d38c;font-weight:950;font-size:12px;text-transform:uppercase}.cream-detail b{display:block;color:#f3f7fb;margin-bottom:3px}.cream-detail span{display:block;color:#aab4c0;font-size:13px;line-height:1.35}.cream-week{width:100%;border-collapse:separate;border-spacing:0 7px}.cream-week th,.cream-week td{padding:9px 10px;background:#0d141c;border-top:1px solid var(--line);border-bottom:1px solid var(--line);vertical-align:top;font-size:13px;line-height:1.35}.cream-week th{color:#b9d0ff;text-align:left}.cream-week td:first-child,.cream-week th:first-child{border-left:1px solid var(--line);border-radius:10px 0 0 10px;font-weight:950;color:#f7d38c}.cream-week td:last-child,.cream-week th:last-child{border-right:1px solid var(--line);border-radius:0 10px 10px 0}.cream-week tr.active td{background:linear-gradient(135deg,rgba(79,140,255,.16),rgba(39,193,160,.08));border-color:rgba(79,140,255,.42)}.cream-rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.cream-rule{background:#0d141c;border:1px solid var(--line);border-radius:16px;padding:14px}.cream-rule h3{margin:0 0 10px;color:#b9d0ff}.cream-rule table{width:100%;border-collapse:collapse}.cream-rule td,.cream-rule th{border-bottom:1px solid var(--line);padding:8px 0;text-align:left;vertical-align:top}.cream-rule th{color:#f7d38c;font-size:12px;text-transform:uppercase}.cream-rule td{color:#e1e8ef;font-size:13px;line-height:1.4}.cream-warning{border-color:rgba(239,91,115,.34);background:rgba(239,91,115,.06)}.cream-warning h3{color:#ffb4c1}
+@media(max-width:980px){.hero,.grid,.tech-layout,.readiness,.cream-grid,.cream-rules{grid-template-columns:1fr}.controls,.voice-controls,.diary-grid{grid-template-columns:1fr 1fr}.supp-grid,.recipe-steps{grid-template-columns:1fr}.timer{font-size:104px}.hero-card{padding:18px}.tabs{top:0}}
+@media(max-width:640px){.container{padding:12px}.tech-gallery{grid-template-columns:1fr}.controls,.status-grid,.quicktimers,.recipe-quick,.voice-controls,.diary-grid{grid-template-columns:1fr}h1{font-size:32px}h2{font-size:21px}.timer{font-size:78px}.tabs{flex-wrap:nowrap;overflow-x:auto}.tab{flex:0 0 auto;padding:10px 12px}.card{padding:14px}.calendar{gap:4px}.daycell{font-size:11px;min-height:42px;padding:6px 2px}.btns{justify-content:stretch}.btns button{flex:1 1 140px}}
+@media print{body{background:white;color:black}body::before,.tabs,.btns,.hero-card:nth-child(2),button{display:none!important}.card,.hero-card{box-shadow:none;border:1px solid #ddd;background:white;color:black}.container{max-width:none}}
+</style>
+</head>
+<body>
+<div id="alarmBanner" class="alarm-banner">⏰ ОТДЫХ ЗАКОНЧЕН — НАЧИНАЙ ПОДХОД</div>
+<div class="container">
+  <section class="hero">
+    <div class="hero-card">
+      <div class="kicker">DNP · тренировки + добавки</div>
+      <h1>УПР (25.05.2026 14-30)</h1>
+      <div class="sub">Тренировки, добавки, рецепты и таймер отдыха в одном офлайн-файле. Прогресс сохраняется по датам на 3 месяца.</div>
+      <div class="status-grid">
+        <div class="stat"><b>Следующий шаг</b><span id="nextAction">—</span></div>
+        <div class="stat"><b>Фокус дня</b><span id="dayFocus">—</span></div>
+        <div class="stat"><b>Серия</b><span id="streakPill">—</span></div>
+      </div>
+      <div class="controls">
+        <div><label class="small">Дата</label><input id="dateInput" type="date"></div>
+        <div><label class="small">Режим тренировки</label><select id="mode"><option value="normal">Обычная неделя</option><option value="light">Облегчённая неделя</option></select></div>
+        <div><label class="small">День</label><select id="daySelect"></select></div>
+        <div><label class="small">Голос</label><select id="voiceSelect"></select></div>
+      </div>
+      <div class="mini-actions">
+        <button class="ghost compact" onclick="shiftDate(-1)">← День</button>
+        <button class="ghost compact" onclick="goToday()">Сегодня</button>
+        <button class="ghost compact" onclick="shiftDate(1)">День →</button>
+        <button class="ghost compact" onclick="jumpToNextOpen()">Ближайший подход</button>
+      </div>
+      <div class="voice-panel">
+        <div class="voice-head">
+          <div><b>Голос тренера</b><span id="voiceStatus">Готов к подсказкам</span></div>
+          <button class="ghost compact" onclick="testVoice()">🔊 Тест</button>
+        </div>
+        <div class="voice-controls">
+          <div><label class="small">Режим</label><select id="voiceMode"><option value="coach">Тренер</option><option value="full">Подробно</option><option value="quiet">Только сигналы</option><option value="off">Без голоса</option></select></div>
+          <div><label class="small">Темп</label><input id="voiceRate" type="range" min="0.65" max="1.15" step="0.05" value="0.88"></div>
+          <div><label class="small">Тон</label><input id="voicePitch" type="range" min="0.75" max="1.25" step="0.05" value="0.95"></div>
+          <div><label class="small">Громкость</label><input id="voiceVolume" type="range" min="0" max="1" step="0.05" value="1"></div>
+          <label class="switchline"><input id="voiceCountdown" type="checkbox" checked>Отсчёт 30/10/5</label>
+          <label class="switchline"><input id="voiceRepeat" type="checkbox" checked>Повтор сигнала</label>
+        </div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h2 style="margin-top:0">📊 Сегодня</h2>
+      <div class="pillrow"><span class="pill" id="todayPill">—</span><span class="pill" id="workoutPill">—</span><span class="pill" id="suppPill">—</span><span class="pill" id="creamPill">—</span><span class="pill" id="readyPill">—</span></div>
+      <div class="progress"><div class="bar" id="totalBar"></div></div>
+      <div class="sub" id="totalText" style="margin-top:10px">—</div>
+      <div class="btns"><button class="ghost" onclick="exportData()">⬇️ Экспорт</button><button class="ghost" onclick="importData()">⬆️ Импорт</button><button class="danger" onclick="resetDay()">🧹 Сброс дня</button></div>
+      <input id="importFile" type="file" accept="application/json" class="hidden">
+    </div>
+  </section>
 
-        <ul class="checklist" aria-label="Добавки во время ужина">
-          <li>
-            <label class="item done">
-              <input type="checkbox" checked />
-              <span>D3 2000 IU</span>
-            </label>
-          </li>
-          <li>
-            <label class="item done">
-              <input type="checkbox" checked />
-              <span>K2 100 мкг</span>
-            </label>
-          </li>
-          <li>
-            <label class="item done">
-              <input type="checkbox" checked />
-              <span>Омега-3 1 капс</span>
-            </label>
-          </li>
-          <li>
-            <label class="item done">
-              <input type="checkbox" checked />
-              <span>Q10 100 мг</span>
-            </label>
-          </li>
-          <li>
-            <label class="item">
-              <input type="checkbox" />
-              <span>Цинк 20 мг</span>
-            </label>
-          </li>
-          <li>
-            <label class="item">
-              <input type="checkbox" />
-              <span>Бор 3 мг</span>
-            </label>
-          </li>
-        </ul>
-      </section>
-    </main>
+  <div class="tabs">
+    <button class="tab active" data-tab="train">🏋️ Тренировка</button>
+    <button class="tab" data-tab="supp">💊 Добавки</button>
+    <button class="tab" data-tab="cream">🧴 Крем</button>
+    <button class="tab" data-tab="recipes">🍽️ Рецепты</button>
+    <button class="tab" data-tab="diary">📝 Дневник</button>
+    <button class="tab" data-tab="calendar">📅 3 месяца</button>
+  </div>
 
-    <script src="./script.js"></script>
-  </body>
-</html>
+  <section id="tab-train" class="grid">
+    <div class="card">
+      <h2 id="trainTitle">Тренировка</h2>
+      <div class="toolbar">
+        <div class="pillrow" id="trainMeta"></div>
+        <label class="switchline"><input id="hideDoneTrain" type="checkbox" onchange="prefs.hideDoneTrain=this.checked; savePrefs(); renderTraining()">Только невыполненные</label>
+      </div>
+      <div class="exercise-list" id="exerciseList"></div>
+    </div>
+    <div class="card">
+      <div class="timer-card">
+        <div class="timer-label" id="timerLabel">ОТДЫХ</div>
+        <div class="timer" id="timer">00:00</div>
+        <div class="quicktimers">
+          <button class="good" onclick="startWarmupTimer()">🔥 Старт разминки</button>
+          <button class="primary" onclick="startRopeTimer()">🪢 Старт скакалки</button>
+        </div>
+        <div class="timer-hint" id="timerHint">Разминка и скакалка берутся из выбранного дня. Если скакалки нет в дне — кнопка сообщит об этом.</div>
+        <div class="btns">
+          <button class="primary" onclick="startRest()">▶️ Старт отдыха</button>
+          <button class="warn" onclick="pauseTimer()">⏸️ Пауза</button>
+          <button class="ghost" onclick="adjustRest(-15)">−15 сек</button>
+          <button class="ghost" onclick="adjustRest(15)">+15 сек</button>
+        </div>
+        <div class="timer-options">
+          <label class="switchline"><input id="autoRest" type="checkbox">Автоотдых после подхода</label>
+          <label class="switchline"><input id="autoJump" type="checkbox">Сразу к следующему</label>
+        </div>
+      </div>
+      <h2 style="margin-top:18px" id="currentExTitle">Выберите упражнение</h2>
+      <div class="meta" id="currentMeta"></div>
+      <div class="sets" id="sets"></div>
+      <div class="btns">
+        <button class="good" onclick="completeSetAndAdvance()">✅ Выполнить и дальше</button>
+        <button class="ghost" onclick="markSelectedSet()">✓ Отметить подход</button>
+        <button class="primary" onclick="nextSet()">➡️ Следующий подход</button>
+        <button class="ghost" onclick="speakCurrent()">🔊 Озвучить</button>
+      </div>
+      <div class="note" id="note">Техника появится после выбора упражнения.</div>
+      <div class="tech-card" id="techCard"></div>
+    </div>
+  </section>
+
+  <section id="tab-supp" class="hidden">
+    <div class="card">
+      <h2 id="suppTitle">Добавки</h2>
+      <div class="toolbar">
+        <div class="search"><input id="suppSearch" placeholder="Поиск добавки: креатин, магний, D3..." oninput="renderSupplements()"></div>
+        <label class="switchline"><input id="hideDoneSupp" type="checkbox" onchange="prefs.hideDoneSupp=this.checked; savePrefs(); renderSupplements()">Только невыполненные</label>
+      </div>
+      <div class="progress"><div class="bar" id="suppBar"></div></div>
+      <div class="sub" id="suppText" style="margin-top:8px">—</div>
+      <div class="supp-grid" id="suppGrid" style="margin-top:14px"></div>
+    </div>
+  </section>
+
+
+
+  <section id="tab-cream" class="hidden">
+    <div class="card">
+      <h2 id="creamTitle">🧴 Крем и уход</h2>
+      <div class="sub">Утро, глаза, вечер и правила нанесения по дням недели. Ретинол — только в свои дни и не близко к глазам.</div>
+      <div class="progress"><div class="bar" id="creamBar"></div></div>
+      <div class="sub" id="creamText" style="margin-top:8px">—</div>
+      <div class="cream-grid">
+        <div class="cream-panel"><h3>Сегодня</h3><div id="creamRoutine" class="cream-routine"></div></div>
+        <div class="cream-panel"><h3>Неделя</h3><div id="creamWeek"></div></div>
+      </div>
+      <div class="cream-rules" id="creamRules"></div>
+    </div>
+  </section>
+
+  <section id="tab-diary" class="hidden">
+    <div class="card">
+      <h2>📝 Дневник дня</h2>
+      <div class="sub">Вес, сон, самочувствие и заметки сохраняются на выбранную дату. Это помогает понять, когда лучше грузить, а когда снизить обороты.</div>
+      <div class="diary-save">
+        <div><b>Сохранение в подпапку</b><span id="diaryFolderStatus">Выбери папку — после этого дневник будет сохраняться автоматически.</span></div>
+        <div class="btns">
+          <button class="ghost compact" onclick="chooseDiaryFolder()">📁 Выбрать папку</button>
+          <button class="ghost compact" onclick="saveDiaryToFolder(true)">💾 Сохранить сейчас</button>
+          <button class="ghost compact" onclick="downloadDiaryJson()">⬇️ JSON</button>
+        </div>
+      </div>
+      <div class="diary-grid">
+        <div class="diary-field"><label>Вес, кг</label><input id="diaryWeight" type="number" min="40" max="220" step="0.1" placeholder="например 92.4"></div>
+        <div class="diary-field"><label>Сон, часов</label><input id="diarySleep" type="number" min="0" max="14" step="0.5" placeholder="7.5"></div>
+        <div class="diary-field"><label>Самочувствие</label><select id="diaryMood"><option value="">—</option><option value="5">Отлично</option><option value="4">Хорошо</option><option value="3">Нормально</option><option value="2">Тяжеловато</option><option value="1">Плохо</option></select></div>
+        <div class="diary-field"><label>Энергия</label><select id="diaryEnergy"><option value="">—</option><option value="5">Много</option><option value="4">Достаточно</option><option value="3">Средне</option><option value="2">Мало</option><option value="1">Очень мало</option></select></div>
+      </div>
+      <div class="diary-note"><label class="small">Заметка</label><textarea id="diaryNote" placeholder="Как прошла тренировка, где болит, что изменить в следующий раз..."></textarea></div>
+      <div class="readiness">
+        <div class="readiness-score"><div><strong id="readinessScore">—</strong><span>готовность</span></div></div>
+        <ul class="readiness-list" id="readinessTips"></ul>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="tab-recipes" class="hidden">
+    <div class="card">
+      <h2 id="recipeTitle">🍽️ Рецепты по дням недели</h2>
+      <div class="sub">Рецепты привязаны к выбранной дате и дню. Ниже — краткая схема ужина, яйца, орехи/семечки, масло и подробные шаги готовки.</div>
+      <div class="btns" style="justify-content:flex-start"><button class="ghost" onclick="speakRecipe()">🔊 Озвучить рецепт дня</button><button class="ghost" onclick="window.print()">🖨️ Печать</button></div>
+      <div id="recipeContent" class="recipe-grid" style="margin-top:14px"></div>
+    </div>
+  </section>
+
+  <section id="tab-calendar" class="hidden">
+    <div class="card">
+      <h2>📅 Календарь на 3 месяца</h2>
+      <div class="sub">Зелёная рамка — в этот день уже есть отметки выполнения.</div>
+      <div class="calendar" id="calendar"></div>
+    </div>
+  </section>
+  <div class="footer">Файл работает офлайн. Добавки, тренировки и рецепты в одном файле. Данные хранятся в localStorage браузера. При очистке браузера отметки могут пропасть — используй экспорт.</div>
+</div>
+<script>
+const DATA = {"normal": {"Понедельник": {"block": "Грудь", "min": 60, "max": 70, "items": [{"name": "Разминка суставы / плечи / локти", "sets": "1", "reps": "5 мин", "weight": "—", "rest": "—", "note": "Мягко разогреть плечи, локти, кисти"}, {"name": "Скакалка лёгко", "sets": "1", "reps": "5 мин", "weight": "—", "rest": "—", "note": "Пульс 115–130, не уставать до жима"}, {"name": "Жим гантелей лёжа", "sets": "4", "reps": "6–10", "weight": "18–20 кг", "rest": "4 мин", "note": "Лопатки сведены, вниз 2–3 сек, локти не разводить широко"}, {"name": "Жим гантелей на наклонной скамье", "sets": "3", "reps": "8–12", "weight": "14–18 кг", "rest": "4 мин", "note": "Скамья 25–35°, жать грудью, без моста поясницей"}, {"name": "Брусья / отжимания на брусьях", "sets": "2", "reps": "5–8", "weight": "свой вес", "rest": "4 мин", "note": "Корпус чуть вперёд, без глубокого провала"}, {"name": "Разводка гантелей лёжа", "sets": "2", "reps": "10–15", "weight": "7–9 кг", "rest": "2 мин", "note": "Мягкая растяжка груди, без боли в плечах"}, {"name": "Велотренажёр", "sets": "1", "reps": "8–10 мин", "weight": "легко", "rest": "—", "note": "Лёгкое кардио после силовой"}]}, "Вторник": {"block": "Ноги", "min": 55, "max": 65, "items": [{"name": "Разминка таз / колени / голеностоп", "sets": "1", "reps": "5–7 мин", "weight": "—", "rest": "—", "note": "Круги тазом, коленями, стопами, лёгкие приседы"}, {"name": "Гоблет-присед", "sets": "3", "reps": "8–12", "weight": "20–28 кг", "rest": "4 мин", "note": "Гантель/гиря у груди, спина ровная, колени по линии носков"}, {"name": "Румынская тяга", "sets": "3", "reps": "8–12", "weight": "16–20 кг × 2", "rest": "4 мин", "note": "Таз назад, спина прямая, движение от бедра"}, {"name": "Обратные выпады", "sets": "2", "reps": "8–10 / нога", "weight": "8–12 кг × 2", "rest": "3 мин", "note": "Шаг назад, корпус ровный, колено не заваливать внутрь"}, {"name": "Подъёмы на носки", "sets": "3", "reps": "15–20", "weight": "12–18 кг × 2", "rest": "2 мин", "note": "Вверху пауза 1 сек, вниз медленно"}, {"name": "Велотренажёр", "sets": "1", "reps": "8 мин", "weight": "очень легко", "rest": "—", "note": "Пульс 100–115, восстановительно"}]}, "Среда": {"block": "Плечи + осанка", "min": 55, "max": 65, "items": [{"name": "Разминка плечи / лопатки / локти", "sets": "1", "reps": "5 мин", "weight": "—", "rest": "—", "note": "Круги плечами, сведение лопаток, лёгкие махи"}, {"name": "Скакалка лёгко", "sets": "1", "reps": "5 мин", "weight": "—", "rest": "—", "note": "Пульс 115–130, лёгкий темп"}, {"name": "Жим гантелей сидя", "sets": "3", "reps": "6–10", "weight": "11–13 кг", "rest": "4 мин", "note": "Спина прижата, не прогибаться, жать без рывка"}, {"name": "Махи гантелями в стороны", "sets": "3", "reps": "12–15", "weight": "6–8 кг", "rest": "2 мин", "note": "Локоть ведёт движение, корпус стабилен"}, {"name": "Задняя дельта", "sets": "3", "reps": "12–15", "weight": "4–6 кг", "rest": "2 мин", "note": "Разводить через локти, работать на осанку"}, {"name": "Внешняя ротация плеча", "sets": "2", "reps": "12–15", "weight": "2–4 кг", "rest": "1,5 мин", "note": "Локоть прижат, движение медленное, без рывка"}, {"name": "Велотренажёр", "sets": "1", "reps": "8–10 мин", "weight": "легко", "rest": "—", "note": "Лёгкое кардио"}]}, "Четверг": {"block": "Восстановление", "min": 15, "max": 30, "items": [{"name": "Спокойная ходьба", "sets": "1", "reps": "10–20 мин", "weight": "—", "rest": "—", "note": "Легко, без ускорений"}, {"name": "Лёгкая растяжка", "sets": "1", "reps": "5–7 мин", "weight": "—", "rest": "—", "note": "Грудь, плечи, поясница, бёдра — мягко, без боли"}]}, "Пятница": {"block": "Пресс + поясница", "min": 40, "max": 50, "items": [{"name": "Разминка кошка-корова + таз", "sets": "1", "reps": "5 мин", "weight": "—", "rest": "—", "note": "Мягко разогреть поясницу и таз"}, {"name": "Колесо с колен", "sets": "3", "reps": "6–10", "weight": "свой вес", "rest": "2,5 мин", "note": "Живот напряжён, поясницу не проваливать"}, {"name": "Подъём ног лёжа", "sets": "3", "reps": "10–15", "weight": "свой вес", "rest": "2 мин", "note": "Поясница прижата, ноги опускать медленно"}, {"name": "Гиперэкстензия", "sets": "3", "reps": "12–15", "weight": "0–10 кг", "rest": "2,5 мин", "note": "Подъём до прямой линии тела, не переразгибать поясницу"}, {"name": "Велотренажёр", "sets": "1", "reps": "8–10 мин", "weight": "легко", "rest": "—", "note": "Лёгкое кардио"}]}, "Суббота": {"block": "Спина мягко + бицепс", "min": 45, "max": 55, "items": [{"name": "Разминка плечи / локти / кисти", "sets": "1", "reps": "5 мин", "weight": "—", "rest": "—", "note": "Хорошо разогреть локти, кисти и плечи"}, {"name": "Пуловер с гантелью лёжа на полу", "sets": "3", "reps": "10–12", "weight": "10–16 кг", "rest": "3 мин", "note": "Лечь на пол, гантель двумя руками, вести за голову только до комфортной амплитуды"}, {"name": "Сгибания гантелей стоя", "sets": "3", "reps": "8–12", "weight": "10–11 кг", "rest": "3 мин", "note": "Локти у корпуса, без раскачки, вниз медленно"}, {"name": "Молотковые сгибания", "sets": "2", "reps": "10–15", "weight": "9–11 кг", "rest": "2 мин", "note": "Нейтральный хват, плечи не поднимать"}, {"name": "Лёгкая добивка на бицепс", "sets": "1", "reps": "15–20", "weight": "5–7 кг", "rest": "1,5 мин", "note": "Только без дискомфорта"}, {"name": "Велотренажёр", "sets": "1", "reps": "8–10 мин", "weight": "легко", "rest": "—", "note": "Лёгкое кардио"}]}, "Воскресенье": {"block": "Баня / восстановление", "min": 45, "max": 60, "items": [{"name": "Лёгкий прогрев", "sets": "1", "reps": "5–7 мин", "weight": "—", "rest": "15 мин", "note": "Без веника, спокойно прогреться"}, {"name": "Основной заход", "sets": "1", "reps": "7–10 мин", "weight": "—", "rest": "15 мин", "note": "Пульс желательно не выше 130, по самочувствию"}, {"name": "Третий заход", "sets": "1", "reps": "5–7 мин", "weight": "—", "rest": "по самочувствию", "note": "Можно пропустить"}]}}, "light": {"Понедельник": {"block": "Грудь легко", "min": 35, "max": 45, "items": [{"name": "Разминка суставы / плечи / локти", "sets": "1", "reps": "5 мин", "weight": "—", "rest": "—", "note": "Мягко разогреть плечи, локти, кисти"}, {"name": "Жим гантелей лёжа", "sets": "3", "reps": "8–10", "weight": "16–18 кг", "rest": "4 мин", "note": "Оставить 3 повтора в запасе"}, {"name": "Жим гантелей на наклонной скамье", "sets": "2", "reps": "10–12", "weight": "12–16 кг", "rest": "4 мин", "note": "Спокойно, без отказа"}, {"name": "Отжимания от пола / брусья легко", "sets": "1", "reps": "5–8", "weight": "свой вес", "rest": "4 мин", "note": "Не до отказа"}, {"name": "Разводка гантелей лёжа", "sets": "1", "reps": "12–15", "weight": "6–8 кг", "rest": "2 мин", "note": "Мягко, без боли"}, {"name": "Велотренажёр", "sets": "1", "reps": "5–6 мин", "weight": "очень легко", "rest": "—", "note": "Восстановительно"}]}, "Вторник": {"block": "Восстановление", "min": 15, "max": 30, "items": [{"name": "Спокойная ходьба", "sets": "1", "reps": "10–20 мин", "weight": "—", "rest": "—", "note": "Легко"}, {"name": "Растяжка ног / поясницы", "sets": "1", "reps": "5–7 мин", "weight": "—", "rest": "—", "note": "Мягко, без боли"}]}, "Среда": {"block": "Ноги легко", "min": 35, "max": 45, "items": [{"name": "Разминка таз / колени / голеностоп", "sets": "1", "reps": "5–7 мин", "weight": "—", "rest": "—", "note": "Мягко разогреть суставы"}, {"name": "Гоблет-присед", "sets": "3", "reps": "8–10", "weight": "18–24 кг", "rest": "4 мин", "note": "Оставить 3 повтора в запасе"}, {"name": "Румынская тяга", "sets": "2", "reps": "8–10", "weight": "14–18 кг × 2", "rest": "4 мин", "note": "Спина ровная, без рывков"}, {"name": "Обратные выпады", "sets": "1", "reps": "8 / нога", "weight": "6–10 кг × 2", "rest": "3 мин", "note": "Можно убрать, если усталость"}, {"name": "Подъёмы на носки", "sets": "2", "reps": "15–20", "weight": "10–14 кг × 2", "rest": "2 мин", "note": "Медленно вниз"}, {"name": "Велотренажёр", "sets": "1", "reps": "5–6 мин", "weight": "очень легко", "rest": "—", "note": "Восстановительно"}]}, "Четверг": {"block": "Восстановление", "min": 15, "max": 30, "items": [{"name": "Ходьба", "sets": "1", "reps": "10–20 мин", "weight": "—", "rest": "—", "note": "Спокойно"}, {"name": "Лёгкая растяжка", "sets": "1", "reps": "5–7 мин", "weight": "—", "rest": "—", "note": "Без боли"}]}, "Пятница": {"block": "Плечи + пресс легко", "min": 35, "max": 45, "items": [{"name": "Разминка плечи / лопатки / локти", "sets": "1", "reps": "5 мин", "weight": "—", "rest": "—", "note": "Мягко разогреть плечи"}, {"name": "Жим гантелей сидя", "sets": "2", "reps": "8–10", "weight": "9–11 кг", "rest": "4 мин", "note": "Не до отказа"}, {"name": "Махи гантелями в стороны", "sets": "2", "reps": "12–15", "weight": "4–6 кг", "rest": "2 мин", "note": "Контроль техники"}, {"name": "Задняя дельта", "sets": "2", "reps": "12–15", "weight": "3–5 кг", "rest": "2 мин", "note": "Для осанки"}, {"name": "Колесо с колен", "sets": "2", "reps": "6–8", "weight": "свой вес", "rest": "2,5 мин", "note": "Живот напряжён"}, {"name": "Гиперэкстензия", "sets": "2", "reps": "12–15", "weight": "без веса", "rest": "2,5 мин", "note": "Не переразгибать поясницу"}]}, "Суббота": {"block": "Руки очень легко", "min": 25, "max": 35, "items": [{"name": "Разминка плечи / локти / кисти", "sets": "1", "reps": "5 мин", "weight": "—", "rest": "—", "note": "Мягко разогреть локти и кисти"}, {"name": "Пуловер с гантелью лёжа на полу", "sets": "2", "reps": "10–12", "weight": "8–12 кг", "rest": "3 мин", "note": "Комфортная амплитуда"}, {"name": "Сгибания гантелей стоя", "sets": "2", "reps": "8–12", "weight": "8–10 кг", "rest": "3 мин", "note": "Без раскачки"}, {"name": "Молотковые сгибания", "sets": "1–2", "reps": "10–12", "weight": "7–9 кг", "rest": "2 мин", "note": "Нейтральный хват"}, {"name": "Велотренажёр", "sets": "1", "reps": "5–6 мин", "weight": "очень легко", "rest": "—", "note": "Восстановительно"}]}, "Воскресенье": {"block": "Баня / восстановление", "min": 40, "max": 55, "items": [{"name": "Лёгкий прогрев", "sets": "1", "reps": "5–7 мин", "weight": "—", "rest": "15 мин", "note": "Спокойно"}, {"name": "Основной заход", "sets": "1", "reps": "7–10 мин", "weight": "—", "rest": "15 мин", "note": "По самочувствию"}, {"name": "Третий заход", "sets": "1", "reps": "5 мин", "weight": "—", "rest": "по самочувствию", "note": "Можно пропустить"}]}}, "supplements": {"Понедельник": {"title": "Понедельник — грудь", "blocks": [["☀️ Утро 08:00–10:00", ["Вода", "Цикорий / шиповник", "ALCAR 500 мг", "Lion’s Mane 280 мг"]], ["🥤 15:30 протеин", ["Протеин 30 г"]], ["⚡ За 30–45 мин до тренировки", ["Кофеин 150 мг", "Теанин 200 мг", "Родиола 200 мг", "Цитруллин 6 г", "Бета-аланин 1,6 г", "L-Carnitine 2 капс"]], ["🥤 18:30 после тренировки", ["Протеин 30 г"]], ["🍽️ Во время ужина 19:30", ["D3 2000 IU", "K2 100 мкг", "Омега-3 1 капс", "Q10 100 мг", "Ликопин 10 мг", "Цинк 20 мг", "Бор 3 мг"]], ["🍽️ После ужина", ["Креатин 5 г", "Коллаген I/III 5 г", "Витамин C 50–100 мг"]], ["🌙 Перед сном 21:30", ["Магний 300–350 мг", "Глицин 2–3 г"]]]}, "Вторник": {"title": "Вторник — ноги", "blocks": [["☀️ Утро 08:00–10:00", ["Вода", "Цикорий / шиповник", "ALCAR 500 мг", "Бенфотиамин 160 мг"]], ["🥤 15:30 протеин", ["Протеин 30 г"]], ["⚡ За 30–45 мин до тренировки", ["Кофеин 150 мг", "Теанин 200 мг", "Цитруллин 6–8 г", "Бета-аланин 1,6 г", "L-Carnitine 2 капс"]], ["🥤 18:30 после тренировки", ["Протеин 30 г"]], ["🍽️ Во время ужина 19:30", ["D3 2000 IU", "K2 100 мкг", "Омега-3 1 капс", "Q10 100 мг", "Куркумин 1 табл", "Медь 1 капс"]], ["🍽️ После ужина", ["Креатин 5 г", "Коллаген I/III 5 г", "Витамин C 50–100 мг"]], ["🌙 Перед сном 21:30", ["Магний 350 мг", "Глицин 2–3 г"]]]}, "Среда": {"title": "Среда — плечи + осанка", "blocks": [["☀️ Утро 08:00–10:00", ["Вода", "Цикорий / шиповник", "ALCAR 500 мг", "Lion’s Mane 280 мг"]], ["🥤 15:30 протеин", ["Протеин 30 г"]], ["⚡ За 30–45 мин до тренировки", ["Кофеин 150 мг", "Теанин 200 мг", "Цитруллин 5–6 г", "Бета-аланин 1,6 г", "L-Carnitine 2 капс"]], ["🥤 18:30 после тренировки", ["Протеин 30 г"]], ["🍽️ Во время ужина 19:30", ["D3 2000 IU", "K2 100 мкг", "Омега-3 1 капс", "Q10 100 мг", "Ликопин 10 мг", "Цинк 20 мг", "Бор 3 мг"]], ["🍽️ После ужина", ["Креатин 5 г", "Коллаген I/III 5 г", "Витамин C 50–100 мг"]], ["🌙 Перед сном 21:30", ["Магний 350 мг", "Глицин 2–3 г"]]]}, "Четверг": {"title": "Четверг — отдых", "blocks": [["☀️ Утро 08:00–10:00", ["Вода", "Цикорий / шиповник", "Бенфотиамин 160 мг"]], ["🥤 15:30 протеин", ["По желанию: протеин 20–30 г"]], ["⚡ За 30–45 мин до тренировки", ["Без стимуляторов"]], ["🥤 18:30 после тренировки", ["—"]], ["🍽️ Во время ужина 19:30", ["D3 2000 IU", "K2 100 мкг", "Омега-3 1 капс", "Q10 100 мг", "Медь 1 капс"]], ["🍽️ После ужина", ["Креатин 5 г", "Коллаген I/III 5 г", "Витамин C 50–100 мг"]], ["🌙 Перед сном 21:30", ["Магний 300–350 мг", "Глицин 2–3 г"]]]}, "Пятница": {"title": "Пятница — пресс + поясница", "blocks": [["☀️ Утро 08:00–10:00", ["Вода", "Цикорий / шиповник", "ALCAR 500 мг"]], ["🥤 15:30 протеин", ["Протеин 30 г"]], ["⚡ За 30–45 мин до тренировки", ["Кофеин 100–150 мг", "Теанин 200 мг", "Цитруллин 4–6 г", "Бета-аланин 1–1,6 г", "L-Carnitine 1–2 капс"]], ["🥤 18:30 после тренировки", ["Протеин 30 г"]], ["🍽️ Во время ужина 19:30", ["D3 2000 IU", "K2 100 мкг", "Омега-3 1 капс", "Q10 100 мг", "Куркумин 1 табл", "Цинк 20 мг", "Бор 3 мг"]], ["🍽️ После ужина", ["Креатин 5 г", "Коллаген I/III 5 г", "Витамин C 50–100 мг", "L-Lysine 1000 мг"]], ["🌙 Перед сном 21:30", ["Магний 350 мг", "Глицин 2–3 г"]]]}, "Суббота": {"title": "Суббота — спина мягко + бицепс", "blocks": [["☀️ Утро 08:00–10:00", ["Вода", "Цикорий / шиповник", "Бенфотиамин 160 мг"]], ["🥤 15:30 протеин", ["Протеин 30 г"]], ["⚡ За 30–45 мин до тренировки", ["Кофеин 150 мг", "Теанин 200 мг", "Цитруллин 6 г", "Бета-аланин 1,6 г", "L-Carnitine 2 капс"]], ["🥤 18:30 после тренировки", ["Протеин 30 г"]], ["🍽️ Во время ужина 19:30", ["D3 2000 IU", "K2 100 мкг", "Омега-3 1 капс", "Q10 100 мг", "Цинк 20 мг", "Бор 3 мг"]], ["🍽️ После ужина", ["Креатин 5 г", "Коллаген I/III 5 г", "Витамин C 50–100 мг"]], ["🌙 Перед сном 21:30", ["Магний 350–400 мг", "Глицин 2–3 г"]]]}, "Воскресенье": {"title": "Воскресенье — баня / восстановление", "blocks": [["☀️ Утро 08:00–10:00", ["Вода", "Цикорий / шиповник", "Lion’s Mane 280 мг"]], ["🥤 15:30 протеин", ["По желанию: протеин 20–30 г"]], ["⚡ За 30–45 мин до тренировки", ["Без кофеина", "Без родиолы", "Без цитруллина", "Без бета-аланина"]], ["🥤 18:30 после тренировки", ["—"]], ["🍽️ Во время ужина 19:30", ["D3 2000 IU", "K2 100 мкг", "Омега-3 1 капс", "Q10 100 мг", "Ликопин 10 мг", "Куркумин 1 табл"]], ["🍽️ После ужина", ["Креатин 5 г", "Коллаген I/III 5 г", "Витамин C 50–100 мг"]], ["🌙 Перед сном 21:30", ["Магний 350 мг", "Глицин 2–3 г"]]]}}};
+const DAYS = ["Воскресенье","Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"];
+const ORDER = ["Понедельник","Вторник","Среда","Четверг","Пятница","Суббота","Воскресенье"];
+const START = new Date("2026-05-16T00:00:00");
+const STORAGE = "UPR_2026_05_16_ADD_SUPP_v1";
+let state = JSON.parse(localStorage.getItem(STORAGE)||"{}");
+const PREFS_STORAGE = "UPR_2026_05_16_PREFS_v2";
+let prefs = JSON.parse(localStorage.getItem(PREFS_STORAGE)||"{}");
+let selectedEx = 0, selectedSet = 1, baseRest = 0, rest = 0, timerId = null, timerDeadline = 0, timerRunning = false, activeTab = prefs.tab || 'train', restWorker = null, restFinishedPending = null, audioCtx = null, voiceQueue = [], voiceSpeaking = false, countdownSaid = {}, diaryDirHandle = null, diarySaveTimer = null; 
+function savePrefs(){ localStorage.setItem(PREFS_STORAGE, JSON.stringify(prefs)); }
+function save(){ localStorage.setItem(STORAGE, JSON.stringify(state)); renderSummary(); renderCalendar(); }
+function dateKey(){ return document.getElementById('dateInput').value; }
+function dayFromDate(dstr){ const [y,m,d]=dstr.split('-').map(Number); return DAYS[new Date(y,m-1,d).getDay()]; }
+function getDay(){ return document.getElementById('daySelect').value || dayFromDate(dateKey()); }
+function getMode(){ return document.getElementById('mode').value; }
+function dayState(){ const k=dateKey(); if(!state[k]) state[k]={supp:{}, train:{normal:{}, light:{}}, diary:{}, cream:{}}; if(!state[k].train) state[k].train={normal:{},light:{}}; if(!state[k].train.normal) state[k].train.normal={}; if(!state[k].train.light) state[k].train.light={}; if(!state[k].supp) state[k].supp={}; if(!state[k].diary) state[k].diary={}; if(!state[k].cream) state[k].cream={}; return state[k]; }
+function restSec(v){ if(!v || v==='—' || String(v).includes('самочув')) return 0; let s=String(v).replace(',','.'); let m=s.match(/([0-9.]+)\s*мин/); if(m) return Math.round(parseFloat(m[1])*60); m=s.match(/([0-9]+)\s*сек/); if(m) return parseInt(m[1]); return 0; }
+function durationSecFromReps(v){
+  if(!v) return 0;
+  let s=String(v).replace(',', '.');
+  let range=s.match(/([0-9.]+)\s*[–-]\s*([0-9.]+)\s*мин/);
+  if(range) return Math.round(parseFloat(range[2])*60);
+  let m=s.match(/([0-9.]+)\s*мин/);
+  if(m) return Math.round(parseFloat(m[1])*60);
+  let sec=s.match(/([0-9]+)\s*сек/);
+  if(sec) return parseInt(sec[1]);
+  return 0;
+}
+function findExerciseByWords(words){
+  const items=currentPlan().items;
+  const idx=items.findIndex(e=>words.some(w=>String(e.name).toLowerCase().includes(w)));
+  return idx>=0 ? {item:items[idx], index:idx} : null;
+}
+function fmt(t){ t=Math.max(0, Math.round(t)); const m=Math.floor(t/60), s=t%60; return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'); }
+function setCount(raw){ const nums=String(raw).match(/\d+/g); if(!nums) return 1; return parseInt(nums[nums.length-1]); }
+function exKey(i,set){ return `${getMode()}_${getDay()}_${i}_${set}`; }
+function suppKey(b,i){ return `${getDay()}_${b}_${i}`; }
+function creamKey(slot){ return `${getDay()}_${slot}`; }
+function init(){
+  const di=document.getElementById('dateInput');
+  const today=new Date();
+  const iso = today.toISOString().slice(0,10);
+  const defaultIso = iso < '2026-05-16' ? '2026-05-16' : iso;
+  di.value = prefs.date || defaultIso;
+  const ds=document.getElementById('daySelect');
+  ORDER.forEach(d=>{let o=document.createElement('option'); o.value=d; o.textContent=d; ds.appendChild(o);});
+  ds.value=prefs.day || dayFromDate(di.value);
+  const modeEl=document.getElementById('mode');
+  modeEl.value=prefs.mode || 'normal';
+  const hideTrain=document.getElementById('hideDoneTrain'); if(hideTrain) hideTrain.checked=!!prefs.hideDoneTrain;
+  const hideSupp=document.getElementById('hideDoneSupp'); if(hideSupp) hideSupp.checked=!!prefs.hideDoneSupp;
+  initVoiceControls();
+  initTrainerControls();
+  initDiaryControls();
+  di.onchange=()=>{ prefs.date=di.value; ds.value=dayFromDate(di.value); prefs.day=ds.value; savePrefs(); selectedEx=0; selectedSet=1; renderAll(); };
+  ds.onchange=()=>{ prefs.day=ds.value; savePrefs(); selectedEx=0; selectedSet=1; renderAll(); };
+  modeEl.onchange=()=>{ prefs.mode=modeEl.value; savePrefs(); selectedEx=0; selectedSet=1; renderAll(); };
+  document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
+  loadVoices(); if(speechSynthesis.onvoiceschanged!==undefined) speechSynthesis.onvoiceschanged=loadVoices;
+  switchTab(activeTab);
+}
+function switchTab(tab){ activeTab=tab; prefs.tab=tab; savePrefs(); document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab)); ['train','supp','cream','recipes','diary','calendar'].forEach(t=>document.getElementById('tab-'+t).classList.toggle('hidden',t!==tab)); renderAll(); }
+
+function setDateAndDay(iso){
+  const di=document.getElementById('dateInput'); const ds=document.getElementById('daySelect');
+  di.value=iso; ds.value=dayFromDate(iso); prefs.date=iso; prefs.day=ds.value; savePrefs(); selectedEx=0; selectedSet=1; resetRestToExercise(); renderAll();
+}
+function shiftDate(delta){ const d=new Date(dateKey()+'T00:00:00'); d.setDate(d.getDate()+delta); setDateAndDay(d.toISOString().slice(0,10)); }
+function goToday(){ const iso=new Date().toISOString().slice(0,10); setDateAndDay(iso < '2026-05-16' ? '2026-05-16' : iso); }
+function trainerSettings(){ return {autoRest:prefs.autoRest!==false, autoJump:prefs.autoJump!==false}; }
+function initTrainerControls(){
+  const s=trainerSettings();
+  const restEl=document.getElementById('autoRest'); if(restEl){ restEl.checked=s.autoRest; restEl.onchange=()=>{ prefs.autoRest=restEl.checked; savePrefs(); }; }
+  const jumpEl=document.getElementById('autoJump'); if(jumpEl){ jumpEl.checked=s.autoJump; jumpEl.onchange=()=>{ prefs.autoJump=jumpEl.checked; savePrefs(); }; }
+}
+function selectNextSetOnly(){ const total=setCount(currentExercise().sets); if(selectedSet<total) selectedSet++; else if(selectedEx<currentPlan().items.length-1){ selectedEx++; selectedSet=1; } }
+function startRestForCompleted(doneExercise,nextExercise){ const sec=restSec(doneExercise.rest); if(sec<=0) return false; ensureAudio(); startPhaseTimer('rest','Отдых',sec,`Отдых ${doneExercise.rest}. Следующее: ${nextExercise.name}. ${nextExercise.reps} повторов.`,`Отдых закончен. Начинай ${nextExercise.name}. ${nextExercise.reps} повторов.`); return true; }
+function jumpToNextOpen(){
+  const p=currentPlan(); const ds=dayState();
+  for(let i=0;i<p.items.length;i++){ const total=setCount(p.items[i].sets); for(let s=1;s<=total;s++){ if(!ds.train[getMode()][exKey(i,s)]){ selectedEx=i; selectedSet=s; resetRestToExercise(); renderTraining(); switchTab('train'); speakCurrent(); return; } } }
+  speak('Все подходы в выбранном дне уже отмечены.', {priority:true, signal:true});
+}
+
+function updateDiaryFolderStatus(text, good=false){ const el=document.getElementById('diaryFolderStatus'); if(el){ el.textContent=text; el.style.color=good?'#95e7b0':'var(--muted)'; } }
+function openDiaryHandleDb(){
+  return new Promise((resolve,reject)=>{
+    if(!('indexedDB' in window)) return resolve(null);
+    const req=indexedDB.open('UPR_DIARY_FOLDER_DB',1);
+    req.onupgradeneeded=()=>req.result.createObjectStore('handles');
+    req.onsuccess=()=>resolve(req.result); req.onerror=()=>reject(req.error);
+  });
+}
+async function storeDiaryFolderHandle(handle){ const db=await openDiaryHandleDb(); if(!db) return; await new Promise((resolve,reject)=>{ const tx=db.transaction('handles','readwrite'); tx.objectStore('handles').put(handle,'diaryDir'); tx.oncomplete=resolve; tx.onerror=()=>reject(tx.error); }); }
+async function loadDiaryFolderHandle(){
+  try{
+    if(!('showDirectoryPicker' in window)){ updateDiaryFolderStatus('Автозапись в папку недоступна в этом браузере. Используй JSON-экспорт.'); return; }
+    const db=await openDiaryHandleDb(); if(!db) return;
+    const handle=await new Promise((resolve,reject)=>{ const tx=db.transaction('handles','readonly'); const req=tx.objectStore('handles').get('diaryDir'); req.onsuccess=()=>resolve(req.result); req.onerror=()=>reject(req.error); });
+    if(handle){ diaryDirHandle=handle; updateDiaryFolderStatus('Папка diary подключена. Изменения будут сохраняться автоматически.', true); }
+    else updateDiaryFolderStatus('Выбери родительскую папку — внутри неё будет создана подпапка diary.');
+  }catch(e){ updateDiaryFolderStatus('Не удалось восстановить папку. Нажми «Выбрать папку».'); }
+}
+async function ensureDiaryWritePermission(){
+  if(!diaryDirHandle) return false;
+  const opts={mode:'readwrite'};
+  if((await diaryDirHandle.queryPermission(opts))==='granted') return true;
+  return (await diaryDirHandle.requestPermission(opts))==='granted';
+}
+async function chooseDiaryFolder(){
+  try{
+    if(!('showDirectoryPicker' in window)){ alert('Этот браузер не даёт сайту сохранять файлы в папку. Используй кнопку JSON.'); return; }
+    const parent=await window.showDirectoryPicker({mode:'readwrite'});
+    diaryDirHandle=await parent.getDirectoryHandle('diary',{create:true});
+    await storeDiaryFolderHandle(diaryDirHandle);
+    updateDiaryFolderStatus('Подпапка diary выбрана. Автосохранение включено.', true);
+    await saveDiaryToFolder(true);
+  }catch(e){ updateDiaryFolderStatus('Папка не выбрана. Дневник пока хранится в браузере.'); }
+}
+function diaryExportPayload(date=dateKey()){
+  const entry=state[date] || {diary:{}, supp:{}, train:{normal:{}, light:{}}};
+  const d=entry.diary || {};
+  const info=readinessInfo(d);
+  const day=dayFromDate(date);
+  const plan=(DATA[getMode()] && DATA[getMode()][day]) || currentPlan();
+  let ttotal=0, tdone=0;
+  if(plan && entry.train){ plan.items.forEach((e,i)=>{ const c=setCount(e.sets); ttotal+=c; for(let s=1;s<=c;s++){ const key=getMode()+'_'+day+'_'+i+'_'+s; if(entry.train[getMode()] && entry.train[getMode()][key]) tdone++; } }); }
+  return {app:'UPR', version:'2026-05-25_14-30', savedAt:new Date().toISOString(), date, day, mode:getMode(), diary:{...d}, readiness:info, progress:{training:{done:tdone,total:ttotal}}};
+}
+function allDiaryPayload(){ return Object.keys(state).sort().filter(k=>state[k]?.diary && Object.values(state[k].diary).some(Boolean)).map(k=>diaryExportPayload(k)); }
+async function writeDiaryJson(name,payload){ const file=await diaryDirHandle.getFileHandle(name,{create:true}); const writable=await file.createWritable(); await writable.write(JSON.stringify(payload,null,2)); await writable.close(); }
+async function saveDiaryToFolder(manual=false){
+  try{
+    if(!diaryDirHandle){ if(manual) updateDiaryFolderStatus('Сначала выбери папку для сохранения.'); return false; }
+    const ok=await ensureDiaryWritePermission(); if(!ok){ updateDiaryFolderStatus('Нет разрешения на запись. Нажми «Сохранить сейчас» и разреши доступ.'); return false; }
+    const payload=diaryExportPayload();
+    await writeDiaryJson(dateKey()+'.json', payload);
+    await writeDiaryJson('latest.json', payload);
+    await writeDiaryJson('all_diary.json', allDiaryPayload());
+    updateDiaryFolderStatus('Сохранено в diary/'+dateKey()+'.json · '+new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit',second:'2-digit'}), true);
+    return true;
+  }catch(e){ updateDiaryFolderStatus('Не удалось записать файл. Проверь разрешение папки или скачай JSON.'); return false; }
+}
+function scheduleDiaryFolderSave(){ clearTimeout(diarySaveTimer); diarySaveTimer=setTimeout(()=>saveDiaryToFolder(false), 500); }
+function downloadDiaryJson(){ const payload=diaryExportPayload(); const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='upr_diary_'+dateKey()+'.json'; a.click(); URL.revokeObjectURL(a.href); }
+
+function diaryData(){ return dayState().diary; }
+function initDiaryControls(){ ['diaryWeight','diarySleep','diaryMood','diaryEnergy','diaryNote'].forEach(id=>{ const el=document.getElementById(id); if(el) el.oninput=saveDiary; }); loadDiaryFolderHandle(); }
+function readinessInfo(d=diaryData()){
+  const mood=Number(d.mood||0), energy=Number(d.energy||0), sleep=Number(d.sleep||0); let score=null;
+  if(mood || energy || sleep){ const sleepScore=sleep ? Math.max(1, Math.min(5, Math.round((sleep/8)*5))) : 3; const vals=[mood||3, energy||3, sleepScore]; score=Math.round(vals.reduce((a,b)=>a+b,0)/vals.length*20); }
+  const tips=[];
+  if(!score) tips.push('Заполни сон, самочувствие и энергию — появится оценка готовности.');
+  if(sleep && sleep<6) tips.push('Сон короткий: лучше не гнаться за рекордами и оставить запас в подходах.');
+  if(mood && mood<=2) tips.push('Самочувствие низкое: проверь разминку, технику и снизь вес при необходимости.');
+  if(energy && energy<=2) tips.push('Энергии мало: держи темп спокойнее и не форсируй последние повторы.');
+  if(score>=80) tips.push('Готовность высокая: можно работать по плану, сохраняя технику.');
+  if(score>=60 && score<80) tips.push('Готовность нормальная: выполняй план без лишнего героизма.');
+  if(score && score<60) tips.push('Готовность снижена: разумно облегчить вес или объём.');
+  return {score, label:score?score+'%':'дневник пуст', tips};
+}
+function saveDiary(){
+  const d=diaryData();
+  d.weight=document.getElementById('diaryWeight')?.value || '';
+  d.sleep=document.getElementById('diarySleep')?.value || '';
+  d.mood=document.getElementById('diaryMood')?.value || '';
+  d.energy=document.getElementById('diaryEnergy')?.value || '';
+  d.note=document.getElementById('diaryNote')?.value || '';
+  save(); renderDiary(false); scheduleDiaryFolderSave();
+}
+function renderDiary(fill=true){
+  const d=diaryData();
+  if(fill){ const set=(id,val)=>{ const el=document.getElementById(id); if(el && document.activeElement!==el) el.value=val||''; }; set('diaryWeight',d.weight); set('diarySleep',d.sleep); set('diaryMood',d.mood); set('diaryEnergy',d.energy); set('diaryNote',d.note); }
+  const info=readinessInfo(d); const score=document.getElementById('readinessScore'); if(score) score.textContent=info.score?info.score+'%':'—';
+  const tips=document.getElementById('readinessTips'); if(tips) tips.innerHTML=info.tips.map(x=>`<li>${x}</li>`).join('');
+}
+
+function currentPlan(){ return DATA[getMode()][getDay()] || DATA[getMode()]['Понедельник']; }
+function currentExercise(){ const p=currentPlan(); return p.items[Math.min(selectedEx,p.items.length-1)]; }
+function renderAll(){ renderTraining(); renderSupplements(); renderCream(); renderRecipes(); renderDiary(); renderSummary(); renderCalendar(); }
+function renderTraining(){
+  const p=currentPlan(); document.getElementById('trainTitle').textContent = `${getDay()} — ${p.block}`;
+  document.getElementById('trainMeta').innerHTML = `<span class="pill">${getMode()==='normal'?'Обычная':'Облегчённая'} неделя</span><span class="pill">${p.min}–${p.max} мин</span><span class="pill">Дата: ${dateKey()} </span>`;
+  const list=document.getElementById('exerciseList'); list.innerHTML=''; const ds=dayState();
+  const hideDone=!!document.getElementById('hideDoneTrain')?.checked;
+  let shown=0;
+  p.items.forEach((e,i)=>{
+    const total=setCount(e.sets); let done=0; for(let s=1;s<=total;s++) if(ds.train[getMode()][exKey(i,s)]) done++;
+    if(hideDone && done===total) return;
+    shown++;
+    const div=document.createElement('div'); div.className='exercise '+(i===selectedEx?'active ':'')+(done===total?'done':''); div.onclick=()=>{selectedEx=i; selectedSet=1; resetRestToExercise(); renderTraining();};
+    div.innerHTML=`<div class="ex-title">${i+1}. ${e.name}</div><div class="meta"><span>Подходы: ${e.sets}</span><span>Повторы: ${e.reps}</span><span>Вес: ${e.weight}</span><span>Отдых: ${e.rest}</span><span>✓ ${done}/${total}</span></div>`;
+    list.appendChild(div);
+  });
+  if(!shown) list.innerHTML='<div class="empty">На сегодня всё отмечено.</div>';
+  renderCurrentExercise();
+}
+function renderCurrentExercise(){
+  const e=currentExercise(); if(!e) return; baseRest=restSec(e.rest); if(rest===0) rest=baseRest; document.getElementById('timer').textContent=fmt(rest||baseRest);
+  document.getElementById('currentExTitle').textContent=e.name;
+  document.getElementById('currentMeta').innerHTML=`<span>Подходы: ${e.sets}</span><span>Повторы: ${e.reps}</span><span>Вес: ${e.weight}</span><span>Отдых: ${e.rest}</span>`;
+  document.getElementById('note').textContent=e.note||'Без примечаний';
+  const total=setCount(e.sets); const sets=document.getElementById('sets'); sets.innerHTML=''; const ds=dayState();
+  for(let s=1;s<=total;s++){ const done=!!ds.train[getMode()][exKey(selectedEx,s)]; const btn=document.createElement('button'); btn.className='setbtn '+(done?'done ':'')+(s===selectedSet?'active':''); btn.textContent=`Подход ${s}`; btn.onclick=()=>{ selectedSet=s; ds.train[getMode()][exKey(selectedEx,s)] = !ds.train[getMode()][exKey(selectedEx,s)]; resetRestToExercise(); save(); speak(coachText('setDone', e), {priority:true}); renderTraining(); }; sets.appendChild(btn); }
+  renderTechnique(e);
+}
+function stopTimer(){
+  if(timerId){ clearInterval(timerId); timerId=null; }
+  if(restWorker){ try{ restWorker.terminate(); }catch(e){} restWorker=null; }
+  timerRunning=false; timerDeadline=0; countdownSaid={};
+  document.getElementById('timer')?.classList.remove('ending','done-flash');
+}
+function ensureAudio(){
+  try{
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if(!Ctx) return null;
+    if(!audioCtx) audioCtx = new Ctx();
+    if(audioCtx.state === 'suspended') audioCtx.resume();
+    return audioCtx;
+  }catch(e){ return null; }
+}
+function playAlarm(){
+  try{
+    const ctx = ensureAudio(); if(!ctx) return;
+    const now = ctx.currentTime;
+    [0, .22, .44].forEach((off)=>{
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type='sine'; osc.frequency.setValueAtTime(880, now+off);
+      gain.gain.setValueAtTime(0.0001, now+off);
+      gain.gain.exponentialRampToValueAtTime(0.35, now+off+0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now+off+0.18);
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.start(now+off); osc.stop(now+off+0.2);
+    });
+  }catch(e){}
+}
+function showAlarmBanner(){
+  const b=document.getElementById('alarmBanner'); if(!b) return;
+  b.classList.add('show');
+  setTimeout(()=>b.classList.remove('show'), 7000);
+}
+function browserNotify(text){
+  try{
+    if(!('Notification' in window)) return;
+    if(Notification.permission === 'granted') new Notification('УПР: отдых закончен', {body:text, silent:false});
+    else if(Notification.permission !== 'denied') Notification.requestPermission().then(p=>{ if(p==='granted') new Notification('УПР: отдых закончен', {body:text, silent:false}); });
+  }catch(e){}
+}
+function finishRest(reason='timer'){
+  if(!timerRunning && reason !== 'worker') return;
+  const e=currentExercise();
+  const kind=timerKind;
+  const endMsg=timerEndMsg;
+  stopTimer();
+  rest=0;
+  const label = kind==='warmup' ? 'РАЗМИНКА ЗАКОНЧЕНА' : kind==='rope' ? 'СКАКАЛКА ЗАКОНЧЕНА' : 'ОТДЫХ ЗАКОНЧЕН';
+  document.getElementById('timerLabel').textContent=label;
+  const timerEl=document.getElementById('timer');
+  timerEl.textContent=fmt(0); timerEl.classList.add('done-flash');
+  const msg = endMsg || coachText('restDone', e);
+  restFinishedPending = msg;
+  showAlarmBanner();
+  playAlarm();
+  if(voiceRepeatEnabled()) setTimeout(playAlarm, 650);
+  browserNotify(msg);
+  speak(msg, {priority:true, signal:true});
+  if(voiceRepeatEnabled()) setTimeout(()=>{ if(restFinishedPending){ speak(restFinishedPending, {priority:true, signal:true}); restFinishedPending=null; } }, 1800);
+  if(kind==='rest') rest=baseRest;
+}
+function tickTimer(){
+  if(!timerRunning) return;
+  rest = Math.max(0, Math.ceil((timerDeadline - Date.now()) / 1000));
+  const timerEl=document.getElementById('timer');
+  timerEl.textContent = fmt(rest);
+  timerEl.classList.toggle('ending', rest>0 && rest<=10);
+  maybeSpeakCountdown(rest);
+  if(rest <= 0) finishRest('tick');
+}
+document.addEventListener('visibilitychange', ()=>{
+  tickTimer();
+  if(!document.hidden && restFinishedPending){ playAlarm(); speak(restFinishedPending); restFinishedPending=null; }
+});
+window.addEventListener('focus', ()=>{
+  tickTimer();
+  if(restFinishedPending){ playAlarm(); speak(restFinishedPending); restFinishedPending=null; }
+});
+function resetRestToExercise(){ stopTimer(); timerKind='rest'; timerEndMsg=''; const e=currentExercise(); baseRest=restSec(e.rest); rest=baseRest; document.getElementById('timer').textContent=fmt(rest); document.getElementById('timerLabel').textContent='ОТДЫХ ИЗ ТАБЛИЦЫ'; }
+function markSelectedSet(announce=true){ const e=currentExercise(); const ds=dayState(); ds.train[getMode()][exKey(selectedEx,selectedSet)]=true; resetRestToExercise(); save(); if(announce) speak(coachText('setDone', e), {priority:true}); renderTraining(); }
+function nextSet(){ selectNextSetOnly(); resetRestToExercise(); renderTraining(); speakCurrent(); }
+function completeSetAndAdvance(){ const doneExercise=currentExercise(); const total=setCount(doneExercise.sets); const isLast=selectedSet>=total && selectedEx>=currentPlan().items.length-1; markSelectedSet(false); if(isLast){ speak('Тренировка на сегодня закрыта. Отличная работа.', {priority:true, signal:true}); renderTraining(); return; } const s=trainerSettings(); if(s.autoJump) selectNextSetOnly(); renderTraining(); if(s.autoRest) startRestForCompleted(doneExercise,currentExercise()); else speakCurrent(); }
+function startWorkerTimer(ms){
+  try{
+    if(restWorker){ restWorker.terminate(); restWorker=null; }
+    const code = `let deadline=0; function check(){ const left=deadline-Date.now(); if(left<=0){ postMessage({type:'done'}); } else { setTimeout(check, Math.min(left, 1000)); } } onmessage=e=>{ if(e.data.type==='start'){ deadline=e.data.deadline; check(); } };`;
+    const blob = new Blob([code], {type:'application/javascript'});
+    restWorker = new Worker(URL.createObjectURL(blob));
+    restWorker.onmessage = (ev)=>{ if(ev.data && ev.data.type==='done') finishRest('worker'); };
+    restWorker.postMessage({type:'start', deadline: timerDeadline});
+  }catch(e){}
+}
+function startPhaseTimer(kind,label, seconds, startMsg, endMsg){
+  if(!seconds || seconds<=0){ speak(`${label}. Время не найдено в таблице для выбранного дня.`); return; }
+  stopTimer();
+  timerKind=kind; timerEndMsg=endMsg; timerStartMsg=startMsg;
+  rest=seconds; baseRest=seconds; timerDeadline=Date.now()+seconds*1000; timerRunning=true; restFinishedPending=null; countdownSaid={};
+  document.getElementById('timer').textContent=fmt(rest);
+  document.getElementById('timerLabel').textContent=label.toUpperCase();
+  speak(startMsg, {priority:true});
+  timerId=setInterval(tickTimer,250);
+  startWorkerTimer(seconds*1000);
+}
+function startWarmupTimer(){
+  const found=findExerciseByWords(['разминка']);
+  if(!found){ speak('Разминка не найдена в выбранном дне.'); return; }
+  selectedEx=found.index; selectedSet=1; renderTraining();
+  const sec=durationSecFromReps(found.item.reps) || 300;
+  startPhaseTimer('warmup','Разминка',sec,`Начинаем разминку. ${found.item.name}. Время ${found.item.reps}. Техника: ${found.item.note}`,`Разминка закончена. Переходи к следующему упражнению.`);
+}
+function startRopeTimer(){
+  const found=findExerciseByWords(['скакал']);
+  if(!found){ speak('Скакалка в выбранном дне не указана.'); return; }
+  selectedEx=found.index; selectedSet=1; renderTraining();
+  const sec=durationSecFromReps(found.item.reps) || 300;
+  startPhaseTimer('rope','Скакалка',sec,`Начинаем скакалку. Время ${found.item.reps}. ${found.item.note}`,`Скакалка закончена. Восстанови дыхание и переходи к силовой части.`);
+}
+function startRest(){
+  const e=currentExercise();
+  ensureAudio();
+  baseRest=restSec(e.rest);
+  if(baseRest<=0){ speak('Для этого упражнения отдых по таймеру не задан.'); return; }
+  stopTimer();
+  rest=baseRest;
+  timerDeadline = Date.now() + rest * 1000;
+  timerRunning = true;
+  restFinishedPending = null;
+  document.getElementById('timer').textContent=fmt(rest);
+  document.getElementById('timerLabel').textContent='ОТДЫХ';
+  speak(coachText('restStart', e), {priority:true});
+  timerId=setInterval(tickTimer,250);
+  startWorkerTimer(rest*1000);
+  tickTimer();
+}
+function pauseTimer(){
+  if(timerRunning){
+    tickTimer();
+    stopTimer();
+    document.getElementById('timerLabel').textContent='ПАУЗА';
+    document.getElementById('timer').textContent=fmt(rest);
+  }
+}
+function adjustRest(sec){
+  if(timerRunning){
+    timerDeadline += sec * 1000;
+    if(restWorker){ try{ restWorker.terminate(); }catch(e){} restWorker=null; }
+    startWorkerTimer(Math.max(0, timerDeadline-Date.now()));
+    tickTimer();
+  } else {
+    rest=Math.max(0,(rest||baseRest)+sec);
+    document.getElementById('timer').textContent=fmt(rest);
+  }
+}
+const CREAM_DAYS = {
+  "Понедельник": {short:"Пн", important:"Ретинол-день", morningFace:"CeraVe AM SPF30: лицо + шея", morningEyes:"Патчи 15–20 мин", eveningFace:"Librederm Retinol: лоб, щёки, нос, подбородок", eveningEyes:"Retinol Eye Cream по косточке"},
+  "Вторник": {short:"Вт", important:"Восстановление", morningFace:"CeraVe AM SPF30: лицо + шея", morningEyes:"Без патчей", eveningFace:"CeraVe PM: лицо + шея", eveningEyes:"CeraVe PM очень тонко"},
+  "Среда": {short:"Ср", important:"Отдых глаз", morningFace:"CeraVe AM SPF30: лицо + шея", morningEyes:"Патчи 15–20 мин", eveningFace:"CeraVe PM: лицо + шея", eveningEyes:"Ничего"},
+  "Четверг": {short:"Чт", important:"Ретинол-день", morningFace:"CeraVe AM SPF30: лицо + шея", morningEyes:"Без патчей", eveningFace:"Librederm Retinol: лицо, кроме глаз", eveningEyes:"Retinol Eye Cream по косточке"},
+  "Пятница": {short:"Пт", important:"Увлажнение", morningFace:"CeraVe AM SPF30: лицо + шея", morningEyes:"Патчи 15–20 мин", eveningFace:"CeraVe PM: лицо + шея", eveningEyes:"CeraVe PM очень тонко"},
+  "Суббота": {short:"Сб", important:"Спокойный день", morningFace:"CeraVe AM SPF30: лицо + шея", morningEyes:"Без патчей", eveningFace:"CeraVe PM: лицо + шея", eveningEyes:"Ничего"},
+  "Воскресенье": {short:"Вс", important:"Подготовка кожи", morningFace:"CeraVe AM SPF30: лицо + шея", morningEyes:"Патчи 15–20 мин", eveningFace:"CeraVe PM: лицо + шея", eveningEyes:"Ничего"}
+};
+const CREAM_SLOTS = [["morningFace","☀️ Утро","Лицо"],["morningEyes","👁️ Утро","Глаза"],["eveningFace","🌙 Вечер","Лицо"],["eveningEyes","👁️ Вечер","Глаза"]];
+const CREAM_APPLY = [["CeraVe AM SPF30","лицо, шея, уши","тонкий слой"],["CeraVe PM","лицо, шея","1–2 нажатия"],["Librederm Retinol лицо","лоб, щёки, нос, подбородок","1 горошина"],["Retinol Eye Cream","вокруг глаз по косточке","рисовое зерно"],["Патчи","под глаза","15–20 мин"]];
+const CREAM_FORBID = [["Librederm Retinol лицо","под глаза, веки, губы"],["Retinol Eye Cream","близко к ресницам"],["Патчи","держать больше 25 мин"],["CeraVe AM SPF30","наносить толстым жирным слоем"]];
+const CREAM_BEARD = [["Лоб, нос, щёки","обычным слоем"],["Щетина","вдавить до кожи"],["Усы","аккуратно вокруг рта"],["Борода","раздвинуть волосы пальцами"],["Шея","обязательно наносить"]];
+function creamIsAction(text){ return text && text !== "Ничего" && !String(text).startsWith("Без "); }
+function creamStats(day=getDay(), ds=dayState()){ const data=CREAM_DAYS[day]; let total=0, done=0; CREAM_SLOTS.forEach(([slot])=>{ if(creamIsAction(data[slot])){ total++; if(ds.cream[day+"_"+slot]) done++; } }); return {total, done, pct: total?Math.round(done/total*100):0}; }
+function creamTable(headers, rows){ return "<table><tr>"+headers.map(h=>"<th>"+h+"</th>").join("")+"</tr>"+rows.map(r=>"<tr>"+r.map(c=>"<td>"+c+"</td>").join("")+"</tr>").join("")+"</table>"; }
+function renderCream(){
+  const data=CREAM_DAYS[getDay()]; if(!data) return;
+  const ds=dayState(); const stats=creamStats(getDay(),ds);
+  const title=document.getElementById("creamTitle"); if(title) title.textContent="🧴 Крем — "+getDay()+" · "+data.important;
+  const text=document.getElementById("creamText"); if(text) text.textContent="Выполнено ухода: "+stats.done+"/"+stats.total+" ("+stats.pct+"%). "+data.important;
+  const bar=document.getElementById("creamBar"); if(bar) bar.style.width=stats.pct+"%";
+  const routine=document.getElementById("creamRoutine"); if(routine){ routine.innerHTML=""; CREAM_SLOTS.forEach(([slot,time,zone])=>{
+    const value=data[slot]; const action=creamIsAction(value); const key=creamKey(slot); const checked=!!ds.cream[key];
+    const row=document.createElement("label"); row.className="cream-task "+(checked?"done ":"")+(!action?"skip":"");
+    row.innerHTML='<input type="checkbox" '+(checked?'checked':'')+' '+(action?'':'disabled')+'><div class="cream-time">'+time+'</div><div class="cream-detail"><b>'+zone+'</b><span>'+value+'</span></div>';
+    if(action) row.querySelector("input").onchange=(ev)=>{ ds.cream[key]=ev.target.checked; save(); renderCream(); renderSummary(); renderCalendar(); };
+    routine.appendChild(row);
+  }); }
+  const week=document.getElementById("creamWeek"); if(week){ const rows=ORDER.map(day=>{ const d=CREAM_DAYS[day]; return '<tr class="'+(day===getDay()?'active':'')+'"><td>'+d.short+'</td><td>'+d.morningFace+'</td><td>'+d.morningEyes+'</td><td>'+d.eveningFace+'</td><td>'+d.eveningEyes+'</td><td>'+d.important+'</td></tr>'; }).join(""); week.innerHTML='<table class="cream-week"><tr><th>День</th><th>☀️ Лицо</th><th>👁️ Глаза</th><th>🌙 Лицо</th><th>👁️ Глаза</th><th>Важно</th></tr>'+rows+'</table>'; }
+  const rules=document.getElementById("creamRules"); if(rules){ rules.innerHTML='<div class="cream-rule"><h3>Как наносить</h3>'+creamTable(["Средство","Куда наносить","Сколько"], CREAM_APPLY)+'</div><div class="cream-rule cream-warning"><h3>Важные запреты</h3>'+creamTable(["Средство","Нельзя"], CREAM_FORBID)+'</div><div class="cream-rule"><h3>При усах, щетине и бороде</h3>'+creamTable(["Зона","Как наносить"], CREAM_BEARD)+'</div><div class="cream-rule"><h3>Памятка</h3><table><tr><td>Ретинол</td><td>Только вечером, в дни Пн/Чт, без век и губ.</td></tr><tr><td>SPF</td><td>Каждое утро, включая шею и уши.</td></tr><tr><td>Патчи</td><td>Снять через 15–20 минут, не ждать высыхания.</td></tr></table></div>'; }
+}
+function renderSupplements(){
+  const d=getDay(); const data=DATA.supplements[d]; if(!data) return;
+  const filter=(document.getElementById('suppSearch')?.value||'').toLowerCase();
+  const hideDone=!!document.getElementById('hideDoneSupp')?.checked;
+  document.getElementById('suppTitle').textContent=data.title+' · добавки';
+  const grid=document.getElementById('suppGrid'); grid.innerHTML=''; const ds=dayState(); let total=0, done=0, shown=0;
+  data.blocks.forEach((b,bi)=>{
+    const entries=b[1].map((item, originalIndex)=>({item, originalIndex})).filter(({item, originalIndex})=>{
+      const key=suppKey(bi,originalIndex); const is=!!ds.supp[key];
+      if(hideDone && is && item!=='—') return false;
+      return !filter || item.toLowerCase().includes(filter) || b[0].toLowerCase().includes(filter);
+    });
+    if(entries.length===0) return;
+    const block=document.createElement('div'); block.className='supp-block'; block.innerHTML=`<h3>${b[0]}</h3>`;
+    entries.forEach(({item, originalIndex})=>{
+      const key=suppKey(bi,originalIndex); const is=!!ds.supp[key]; if(item!=='—'){ total++; if(is) done++; }
+      shown++;
+      const lab=document.createElement('label'); lab.className='check '+(is?'done':'');
+      lab.innerHTML=`<input type="checkbox" ${is?'checked':''} ${item==='—'?'disabled':''}><span>${item}</span>`;
+      lab.querySelector('input').onchange=(ev)=>{ ds.supp[key]=ev.target.checked; save(); renderSupplements(); };
+      block.appendChild(lab);
+    }); grid.appendChild(block);
+  });
+  if(!shown) grid.innerHTML='<div class="empty">Ничего не найдено.</div>';
+  const pct=total?Math.round(done/total*100):0; document.getElementById('suppBar').style.width=pct+'%'; document.getElementById('suppText').textContent=`Выполнено добавок: ${done}/${total} (${pct}%)`;
+}
+function firstOpenSet(p,ds){
+  for(let i=0;i<p.items.length;i++){
+    const e=p.items[i]; const total=setCount(e.sets);
+    for(let s=1;s<=total;s++) if(!ds.train[getMode()][exKey(i,s)]) return `${e.name} · подход ${s}/${total}`;
+  }
+  return 'Тренировка закрыта';
+}
+function completionStreak(){
+  let count=0; const selected=new Date(dateKey()+'T00:00:00');
+  for(let i=0;i<93;i++){
+    const d=new Date(selected); d.setDate(selected.getDate()-i); const iso=d.toISOString().slice(0,10); const data=state[iso];
+    const has=data && (JSON.stringify(data.supp||{}).includes('true') || JSON.stringify(data.train||{}).includes('true') || JSON.stringify(data.cream||{}).includes('true'));
+    if(has) count++; else break;
+  }
+  return count;
+}
+function renderSummary(){
+  const d=getDay(); const p=currentPlan(); const ds=dayState(); let stotal=0, sdone=0; const sd=DATA.supplements[d];
+  sd.blocks.forEach((b,bi)=>b[1].forEach((it,ii)=>{ if(it==='—') return; stotal++; if(ds.supp[suppKey(bi,ii)]) sdone++; }));
+  let ttotal=0, tdone=0; p.items.forEach((e,i)=>{ let c=setCount(e.sets); ttotal+=c; for(let s=1;s<=c;s++) if(ds.train[getMode()][exKey(i,s)]) tdone++; });
+  const cstats=creamStats(d,ds);
+  const total=stotal+ttotal+cstats.total, done=sdone+tdone+cstats.done, pct=total?Math.round(done/total*100):0;
+  document.getElementById('todayPill').textContent=`${dateKey()} · ${d}`;
+  document.getElementById('workoutPill').textContent=`🏋️ ${tdone}/${ttotal} подходов`;
+  document.getElementById('suppPill').textContent=`💊 ${sdone}/${stotal} добавок`;
+  const creamPill=document.getElementById('creamPill'); if(creamPill) creamPill.textContent=`🧴 ${cstats.done}/${cstats.total} крем`;
+  const ready=readinessInfo(ds.diary); const readyPill=document.getElementById('readyPill'); if(readyPill) readyPill.textContent=`📝 ${ready.label}`;
+  document.getElementById('totalBar').style.width=pct+'%';
+  document.getElementById('totalText').textContent=`Общий прогресс дня: ${done}/${total} (${pct}%). Готовность: ${ready.label}`;
+  const next=document.getElementById('nextAction'); if(next) next.textContent=firstOpenSet(p,ds);
+  const focus=document.getElementById('dayFocus'); if(focus) focus.textContent=`${p.block} · ${p.min}–${p.max} мин`;
+  const streak=document.getElementById('streakPill'); if(streak){ const n=completionStreak(); streak.textContent=n ? `${n} дн. с отметками` : 'Начни сегодня'; }
+}
+
+const TECHNIQUE_DATA = {
+  "Разминка суставы / плечи / локти": {
+    "imageId": "Shoulder_Circles",
+    "sourceName": "Shoulder Circles",
+    "images": [
+      "upr_assets/exercises/Shoulder_Circles_0.jpg",
+      "upr_assets/exercises/Shoulder_Circles_1.jpg"
+    ],
+    "focus": "Разогреть плечевые суставы, локти и кисти перед жимом без утомления мышц.",
+    "setup": [
+      "Стой ровно, стопы на ширине таза, корпус высокий.",
+      "Держи живот слегка напряжённым, плечи опущены от ушей."
+    ],
+    "steps": [
+      "Начни с маленьких кругов плечами назад и вперёд по 20-30 секунд.",
+      "Добавь круги руками в комфортной амплитуде, без рывков.",
+      "Разогрей локти: сгибание-разгибание и мягкие круги предплечьями.",
+      "Закончить кистями: круги, мягкое раскрытие пальцев, несколько лёгких сжиманий кулака."
+    ],
+    "mistakes": [
+      "Не делай резкие махи через боль.",
+      "Не поднимай плечи к ушам.",
+      "Не превращай разминку в силовую работу."
+    ],
+    "cues": [
+      "Движение мягкое.",
+      "Суставы смазываем, не добиваем.",
+      "Боль не продавливать."
+    ]
+  },
+  "Разминка плечи / лопатки / локти": {
+    "imageId": "Arm_Circles",
+    "sourceName": "Arm Circles",
+    "images": [
+      "upr_assets/exercises/Arm_Circles_0.jpg",
+      "upr_assets/exercises/Arm_Circles_1.jpg"
+    ],
+    "focus": "Подготовить плечи, лопатки и локти к жимам и махам.",
+    "setup": [
+      "Стой устойчиво, грудная клетка раскрыта.",
+      "Лопатки двигаются свободно, шея расслаблена."
+    ],
+    "steps": [
+      "Сделай круги плечами назад, затем вперёд.",
+      "Выполни махи руками в стороны в небольшой амплитуде.",
+      "Добавь сведение и разведение лопаток без прогиба поясницы.",
+      "Плавно разогрей локти и кисти перед рабочими весами."
+    ],
+    "mistakes": [
+      "Не вращай руками слишком быстро.",
+      "Не запрокидывай голову.",
+      "Не начинай жимы, пока плечи ощущаются холодными."
+    ],
+    "cues": [
+      "Плечи вниз.",
+      "Лопатки живые.",
+      "Темп спокойный."
+    ]
+  },
+  "Разминка плечи / локти / кисти": {
+    "imageId": "Arm_Circles",
+    "sourceName": "Arm Circles",
+    "images": [
+      "upr_assets/exercises/Arm_Circles_0.jpg",
+      "upr_assets/exercises/Arm_Circles_1.jpg"
+    ],
+    "focus": "Подготовить локти, кисти и плечи к сгибаниям и пуловеру.",
+    "setup": [
+      "Стой ровно, руки свободны.",
+      "Дыши спокойно, не зажимай шею."
+    ],
+    "steps": [
+      "Круги плечами 30-40 секунд.",
+      "Круги прямыми руками в малой амплитуде.",
+      "Сгибание и разгибание локтей, затем круги предплечьями.",
+      "Кисти: круги в обе стороны, лёгкое растяжение сгибателей и разгибателей."
+    ],
+    "mistakes": [
+      "Не щёлкай суставами специально.",
+      "Не дави на кисти через боль.",
+      "Не делай разминку до усталости."
+    ],
+    "cues": [
+      "Локти тёплые.",
+      "Кисти мягкие.",
+      "Плечи не зажимаем."
+    ]
+  },
+  "Разминка таз / колени / голеностоп": {
+    "imageId": "Standing_Hip_Circles",
+    "sourceName": "Standing Hip Circles",
+    "images": [
+      "upr_assets/exercises/Standing_Hip_Circles_0.jpg",
+      "upr_assets/exercises/Standing_Hip_Circles_1.jpg"
+    ],
+    "focus": "Подготовить таз, колени и голеностоп к приседам, выпадам и тяге.",
+    "setup": [
+      "Стопы на ширине таза, вес распределён по всей стопе.",
+      "Держи корпус ровным и не заваливайся на носки."
+    ],
+    "steps": [
+      "Круги тазом по 6-10 раз в каждую сторону.",
+      "Круги коленями мягко, без глубокого приседа.",
+      "Круги голеностопом каждой ногой.",
+      "Сделай 5-8 медленных приседаний без веса, проверяя колени по линии носков."
+    ],
+    "mistakes": [
+      "Не своди колени внутрь.",
+      "Не делай резких пружинящих движений.",
+      "Не уходи в глубокую амплитуду, если суставы ещё холодные."
+    ],
+    "cues": [
+      "Колени по носкам.",
+      "Стопа полная.",
+      "Амплитуда комфортная."
+    ]
+  },
+  "Разминка кошка-корова + таз": {
+    "imageId": "Cat_Stretch",
+    "sourceName": "Cat Stretch",
+    "images": [
+      "upr_assets/exercises/Cat_Stretch_0.jpg",
+      "upr_assets/exercises/Cat_Stretch_1.jpg"
+    ],
+    "focus": "Мягко включить поясницу, таз и брюшной пресс перед упражнениями на корпус.",
+    "setup": [
+      "Встань на четвереньки: ладони под плечами, колени под тазом.",
+      "Шея продолжает линию позвоночника."
+    ],
+    "steps": [
+      "На выдохе округли спину, подтяни живот и слегка подкрути таз.",
+      "На вдохе мягко прогнись в грудном отделе, не ломая поясницу.",
+      "Двигайся медленно 6-10 циклов.",
+      "После этого добавь небольшие круги тазом в обе стороны."
+    ],
+    "mistakes": [
+      "Не проваливай поясницу резко.",
+      "Не запрокидывай голову.",
+      "Не задерживай дыхание."
+    ],
+    "cues": [
+      "Дыши в движение.",
+      "Живот мягко активен.",
+      "Поясница без боли."
+    ]
+  },
+  "Скакалка лёгко": {
+    "imageId": "Rope_Jumping",
+    "sourceName": "Rope Jumping",
+    "images": [
+      "upr_assets/exercises/Rope_Jumping_0.jpg",
+      "upr_assets/exercises/Rope_Jumping_1.jpg"
+    ],
+    "focus": "Поднять пульс и температуру тела, не забивая икры перед силовой частью.",
+    "setup": [
+      "Корпус высокий, локти близко к корпусу.",
+      "Прыжок низкий, приземление мягкое на переднюю часть стопы."
+    ],
+    "steps": [
+      "Крути скакалку кистями, а не плечами.",
+      "Прыгай низко, ровным лёгким ритмом.",
+      "Дыши носом или спокойно через рот, не уходи в спринт.",
+      "Если сбился, спокойно восстанови ритм и продолжай."
+    ],
+    "mistakes": [
+      "Не прыгай высоко.",
+      "Не бей пятками в пол.",
+      "Не разгоняй пульс выше нужного перед жимом."
+    ],
+    "cues": [
+      "Кисти работают.",
+      "Прыжок низкий.",
+      "Пульс контролируем."
+    ]
+  },
+  "Жим гантелей лёжа": {
+    "imageId": "Dumbbell_Bench_Press",
+    "sourceName": "Dumbbell Bench Press",
+    "images": [
+      "upr_assets/exercises/Dumbbell_Bench_Press_0.jpg",
+      "upr_assets/exercises/Dumbbell_Bench_Press_1.jpg"
+    ],
+    "focus": "Силовая работа на грудь с контролем плеч и стабильными лопатками.",
+    "setup": [
+      "Ляг на скамью, стопы устойчиво стоят на полу.",
+      "Сведи и опусти лопатки, грудь слегка раскрыта.",
+      "Гантели над нижней/средней частью груди, запястья ровные."
+    ],
+    "steps": [
+      "Опускай гантели 2-3 секунды, локти идут под углом примерно 45-70 градусов к корпусу.",
+      "Внизу остановись до болезненного растяжения, плечи не уводи вперёд.",
+      "Жми вверх по дуге к центру, но не стукай гантели друг о друга.",
+      "Вверху не теряй лопатки и не выталкивай плечи к ушам."
+    ],
+    "mistakes": [
+      "Локти слишком широко.",
+      "Мост поясницей вместо работы грудью.",
+      "Плечи уходят вперёд в нижней точке.",
+      "Гантели падают вниз без контроля."
+    ],
+    "cues": [
+      "Лопатки в карманах.",
+      "Вниз медленно.",
+      "Жмём грудью, не плечами."
+    ]
+  },
+  "Жим гантелей на наклонной скамье": {
+    "imageId": "Incline_Dumbbell_Press",
+    "sourceName": "Incline Dumbbell Press",
+    "images": [
+      "upr_assets/exercises/Incline_Dumbbell_Press_0.jpg",
+      "upr_assets/exercises/Incline_Dumbbell_Press_1.jpg"
+    ],
+    "focus": "Верх груди и передняя дельта без перегруза плеч.",
+    "setup": [
+      "Поставь наклон 25-35 градусов.",
+      "Лопатки сведены и опущены, стопы плотно на полу.",
+      "Гантели стартуют у верхней части груди, запястья над локтями."
+    ],
+    "steps": [
+      "Опускай гантели плавно к верхней части груди.",
+      "Локти держи немного впереди линии плеч, не раскрывай их в стороны до 90 градусов.",
+      "Жми вверх и чуть внутрь, сохраняя грудь раскрытой.",
+      "Остановись до полного расслабления внизу, если плечо тянет неприятно."
+    ],
+    "mistakes": [
+      "Слишком высокий наклон, превращающий упражнение в жим плечами.",
+      "Поясничный мост.",
+      "Развал запястий назад."
+    ],
+    "cues": [
+      "Наклон умеренный.",
+      "Локти под контролем.",
+      "Грудь работает первой."
+    ]
+  },
+  "Брусья / отжимания на брусьях": {
+    "imageId": "Dips_-_Chest_Version",
+    "sourceName": "Dips - Chest Version",
+    "images": [
+      "upr_assets/exercises/Dips_-_Chest_Version_0.jpg",
+      "upr_assets/exercises/Dips_-_Chest_Version_1.jpg"
+    ],
+    "focus": "Грудь и трицепс с безопасной глубиной для плеч.",
+    "setup": [
+      "Возьмись за брусья, плечи опущены, корпус слегка наклонён вперёд.",
+      "Ноги можно согнуть назад, живот напряжён."
+    ],
+    "steps": [
+      "Начни с верхней позиции без провала в плечах.",
+      "Опускайся медленно, пока плечо комфортно и локти контролируются.",
+      "Локти идут назад и слегка в стороны, не расползаются хаотично.",
+      "Выжимайся вверх, сохраняя корпус чуть наклонённым."
+    ],
+    "mistakes": [
+      "Слишком глубокий провал.",
+      "Плечи поднимаются к ушам.",
+      "Рывок из нижней точки.",
+      "Работа до отказа в облегчённую неделю."
+    ],
+    "cues": [
+      "Плечи вниз.",
+      "Глубина комфортная.",
+      "Без отказа."
+    ]
+  },
+  "Отжимания от пола / брусья легко": {
+    "imageId": "Pushups",
+    "sourceName": "Pushups",
+    "images": [
+      "upr_assets/exercises/Pushups_0.jpg",
+      "upr_assets/exercises/Pushups_1.jpg"
+    ],
+    "focus": "Лёгкий вариант жима без отказа, чтобы сохранить движение и не перегрузить восстановление.",
+    "setup": [
+      "Ладони под плечами или немного шире.",
+      "Корпус прямой от головы до пяток, живот и ягодицы слегка напряжены."
+    ],
+    "steps": [
+      "Опускайся грудью к полу, локти примерно 45 градусов от корпуса.",
+      "Держи шею нейтрально, взгляд в пол перед собой.",
+      "Выжимайся вверх всем корпусом, не проваливая поясницу.",
+      "Остановись за 2-3 повтора до отказа."
+    ],
+    "mistakes": [
+      "Провисание поясницы.",
+      "Локти строго в стороны.",
+      "Короткая амплитуда ради количества."
+    ],
+    "cues": [
+      "Корпус доской.",
+      "Локти мягко назад.",
+      "Оставь запас."
+    ]
+  },
+  "Разводка гантелей лёжа": {
+    "imageId": "Dumbbell_Flyes",
+    "sourceName": "Dumbbell Flyes",
+    "images": [
+      "upr_assets/exercises/Dumbbell_Flyes_0.jpg",
+      "upr_assets/exercises/Dumbbell_Flyes_1.jpg"
+    ],
+    "focus": "Растяжение груди в контролируемой амплитуде без боли в плечах.",
+    "setup": [
+      "Ляг на скамью, лопатки сведены, гантели над грудью.",
+      "Локти слегка согнуты и сохраняют угол во всём повторе."
+    ],
+    "steps": [
+      "Разводи руки в стороны медленно, будто обнимаешь большую дугу.",
+      "Остановись, когда грудь растянулась, но плечо не тянет неприятно.",
+      "Верни гантели вверх за счёт сведения рук грудью.",
+      "Вверху не стукай гантели и не расслабляй лопатки."
+    ],
+    "mistakes": [
+      "Слишком прямые локти.",
+      "Глубина ниже контроля плеча.",
+      "Превращение разводки в жим."
+    ],
+    "cues": [
+      "Локоть мягкий.",
+      "Дуга широкая.",
+      "Плечу комфортно."
+    ]
+  },
+  "Велотренажёр": {
+    "imageId": "Bicycling_Stationary",
+    "sourceName": "Bicycling, Stationary",
+    "images": [
+      "upr_assets/exercises/Bicycling_Stationary_0.jpg",
+      "upr_assets/exercises/Bicycling_Stationary_1.jpg"
+    ],
+    "focus": "Лёгкое кардио для разогрева или восстановления после силовой.",
+    "setup": [
+      "Сядь так, чтобы в нижней точке колено оставалось слегка согнутым.",
+      "Спина нейтральная, плечи расслаблены, не висни на руле."
+    ],
+    "steps": [
+      "Начни с лёгкого сопротивления 1-2 минуты.",
+      "Держи ровный каденс, дыхание спокойное.",
+      "Не разгоняйся в интервальный режим, если в плане стоит восстановительно.",
+      "В конце плавно снизь темп."
+    ],
+    "mistakes": [
+      "Слишком низкое седло.",
+      "Зажатые плечи.",
+      "Слишком тяжёлое сопротивление после силовой."
+    ],
+    "cues": [
+      "Колено мягкое.",
+      "Темп ровный.",
+      "Пульс спокойный."
+    ]
+  },
+  "Гоблет-присед": {
+    "imageId": "Goblet_Squat",
+    "sourceName": "Goblet Squat",
+    "images": [
+      "upr_assets/exercises/Goblet_Squat_0.jpg",
+      "upr_assets/exercises/Goblet_Squat_1.jpg"
+    ],
+    "focus": "Присед с гантелью/гирей у груди: ноги, ягодицы и стабильный корпус.",
+    "setup": [
+      "Держи вес у груди, локти направлены вниз.",
+      "Стопы чуть шире таза, носки слегка наружу.",
+      "Живот напряжён, грудь высокая."
+    ],
+    "steps": [
+      "Начинай движение тазом чуть назад и коленями по линии носков.",
+      "Опускайся до комфортной глубины без округления поясницы.",
+      "Внизу сохраняй полную стопу на полу.",
+      "Поднимайся, толкая пол ногами, не заваливая колени внутрь."
+    ],
+    "mistakes": [
+      "Колени внутрь.",
+      "Отрыв пяток.",
+      "Округление спины под весом.",
+      "Падение вниз без контроля."
+    ],
+    "cues": [
+      "Полная стопа.",
+      "Колени по носкам.",
+      "Корпус высокий."
+    ]
+  },
+  "Румынская тяга": {
+    "imageId": "Romanian_Deadlift",
+    "sourceName": "Romanian Deadlift",
+    "images": [
+      "upr_assets/exercises/Romanian_Deadlift_0.jpg",
+      "upr_assets/exercises/Romanian_Deadlift_1.jpg"
+    ],
+    "focus": "Задняя поверхность бедра и ягодицы через движение тазом назад.",
+    "setup": [
+      "Стопы на ширине таза, вес в руках перед бёдрами.",
+      "Колени слегка согнуты, спина нейтральная, лопатки собраны."
+    ],
+    "steps": [
+      "Отводи таз назад, будто закрываешь дверь ягодицами.",
+      "Гантели скользят близко к ногам, спина остаётся ровной.",
+      "Опускайся до натяжения задней поверхности бедра без округления поясницы.",
+      "Поднимайся, проталкивая таз вперёд, но не переразгибайся назад."
+    ],
+    "mistakes": [
+      "Присед вместо тяги.",
+      "Округление поясницы.",
+      "Гантели уходят далеко от ног.",
+      "Рывок из нижней точки."
+    ],
+    "cues": [
+      "Таз назад.",
+      "Гантели близко.",
+      "Спина длинная."
+    ]
+  },
+  "Обратные выпады": {
+    "imageId": "Dumbbell_Rear_Lunge",
+    "sourceName": "Dumbbell Rear Lunge",
+    "images": [
+      "upr_assets/exercises/Dumbbell_Rear_Lunge_0.jpg",
+      "upr_assets/exercises/Dumbbell_Rear_Lunge_1.jpg"
+    ],
+    "focus": "Ноги и ягодицы с меньшей нагрузкой на колено, чем в шагах вперёд.",
+    "setup": [
+      "Стой ровно, гантели по бокам, стопы на ширине таза.",
+      "Живот напряжён, взгляд вперёд."
+    ],
+    "steps": [
+      "Сделай шаг назад и поставь заднюю стопу на носок.",
+      "Опустись вниз, переднее колено идёт по линии носка.",
+      "Основной вес держи на передней ноге.",
+      "Вернись вверх через пятку/середину передней стопы."
+    ],
+    "mistakes": [
+      "Переднее колено заваливается внутрь.",
+      "Корпус падает вперёд.",
+      "Слишком короткий шаг назад.",
+      "Отталкивание только задней ногой."
+    ],
+    "cues": [
+      "Передняя нога главная.",
+      "Колено ровно.",
+      "Шаг спокойный."
+    ]
+  },
+  "Подъёмы на носки": {
+    "imageId": "Standing_Dumbbell_Calf_Raise",
+    "sourceName": "Standing Dumbbell Calf Raise",
+    "images": [
+      "upr_assets/exercises/Standing_Dumbbell_Calf_Raise_0.jpg",
+      "upr_assets/exercises/Standing_Dumbbell_Calf_Raise_1.jpg"
+    ],
+    "focus": "Икры с паузой вверху и контролем вниз.",
+    "setup": [
+      "Стой ровно, гантели по бокам.",
+      "Опора на переднюю часть стопы, корпус стабилен."
+    ],
+    "steps": [
+      "Поднимись на носки максимально высоко без завала наружу/внутрь.",
+      "Сделай паузу 1 секунду вверху.",
+      "Опускайся медленно, чувствуя растяжение икры.",
+      "Повторяй ровно, без пружинящих рывков."
+    ],
+    "mistakes": [
+      "Пружина внизу.",
+      "Короткая амплитуда.",
+      "Завал стопы наружу.",
+      "Плечи поднимаются от напряжения."
+    ],
+    "cues": [
+      "Пауза сверху.",
+      "Вниз медленно.",
+      "Стопа ровная."
+    ]
+  },
+  "Жим гантелей сидя": {
+    "imageId": "Dumbbell_Shoulder_Press",
+    "sourceName": "Dumbbell Shoulder Press",
+    "images": [
+      "upr_assets/exercises/Dumbbell_Shoulder_Press_0.jpg",
+      "upr_assets/exercises/Dumbbell_Shoulder_Press_1.jpg"
+    ],
+    "focus": "Плечи и трицепс без прогиба поясницы.",
+    "setup": [
+      "Сядь, спина опирается или держится нейтрально.",
+      "Гантели на уровне ушей/плеч, запястья над локтями.",
+      "Живот напряжён, рёбра не выпячиваются."
+    ],
+    "steps": [
+      "Жми гантели вверх без рывка.",
+      "Вверху не пожимай плечами и не сталкивай гантели.",
+      "Опускай до уровня, где плечи сохраняют контроль.",
+      "Держи предплечья близко к вертикали."
+    ],
+    "mistakes": [
+      "Прогиб поясницы.",
+      "Локти сильно назад.",
+      "Рывок ногами или корпусом.",
+      "Плечи к ушам."
+    ],
+    "cues": [
+      "Живот держит корпус.",
+      "Локоть под кистью.",
+      "Жим плавный."
+    ]
+  },
+  "Махи гантелями в стороны": {
+    "imageId": "Side_Lateral_Raise",
+    "sourceName": "Side Lateral Raise",
+    "images": [
+      "upr_assets/exercises/Side_Lateral_Raise_0.jpg",
+      "upr_assets/exercises/Side_Lateral_Raise_1.jpg"
+    ],
+    "focus": "Средняя дельта без раскачки корпусом.",
+    "setup": [
+      "Стой ровно, гантели по бокам, локти чуть согнуты.",
+      "Плечи опущены, корпус неподвижен."
+    ],
+    "steps": [
+      "Поднимай руки в стороны до уровня плеч или чуть ниже.",
+      "Веди движение локтями, кисти не должны сильно обгонять локти.",
+      "Вверху сделай короткую паузу без пожимания плечами.",
+      "Опускай медленно, не бросай вес."
+    ],
+    "mistakes": [
+      "Раскачка корпусом.",
+      "Подъём плеч к ушам.",
+      "Слишком большой вес и рывки.",
+      "Кисти выше локтей."
+    ],
+    "cues": [
+      "Локоть ведёт.",
+      "Плечи вниз.",
+      "Вес контролируем."
+    ]
+  },
+  "Задняя дельта": {
+    "imageId": "Seated_Bent-Over_Rear_Delt_Raise",
+    "sourceName": "Seated Bent-Over Rear Delt Raise",
+    "images": [
+      "upr_assets/exercises/Seated_Bent-Over_Rear_Delt_Raise_0.jpg",
+      "upr_assets/exercises/Seated_Bent-Over_Rear_Delt_Raise_1.jpg"
+    ],
+    "focus": "Задняя дельта и верх спины для осанки.",
+    "setup": [
+      "Наклони корпус вперёд с ровной спиной.",
+      "Гантели под плечами, локти немного согнуты.",
+      "Шея нейтральна, взгляд вниз."
+    ],
+    "steps": [
+      "Разводи руки через локти, как будто раскрываешь крылья.",
+      "Держи движение в плоскости задней дельты, не тяни трапецией.",
+      "Вверху короткая пауза, лопатки двигаются мягко.",
+      "Опускай гантели под контролем."
+    ],
+    "mistakes": [
+      "Мах за счёт спины.",
+      "Пожимание плечами.",
+      "Слишком большой вес.",
+      "Сведение лопаток вместо работы задней дельты."
+    ],
+    "cues": [
+      "Локти в стороны.",
+      "Плечи от ушей.",
+      "Малый вес, чисто."
+    ]
+  },
+  "Внешняя ротация плеча": {
+    "imageId": "External_Rotation",
+    "sourceName": "External Rotation",
+    "images": [
+      "upr_assets/exercises/External_Rotation_0.jpg",
+      "upr_assets/exercises/External_Rotation_1.jpg"
+    ],
+    "focus": "Ротаторная манжета плеча: контроль и здоровье сустава.",
+    "setup": [
+      "Локоть прижат к корпусу или зафиксирован на опоре.",
+      "Вес лёгкий, движение небольшое."
+    ],
+    "steps": [
+      "Сохраняй локоть на месте.",
+      "Поворачивай предплечье наружу медленно, без рывка.",
+      "Остановись в комфортной амплитуде.",
+      "Вернись назад так же медленно."
+    ],
+    "mistakes": [
+      "Отведение локтя от корпуса.",
+      "Слишком большой вес.",
+      "Разворот всего корпуса вместо плеча."
+    ],
+    "cues": [
+      "Локоть приклеен.",
+      "Медленно.",
+      "Без боли."
+    ]
+  },
+  "Спокойная ходьба": {
+    "imageId": "Walking_Treadmill",
+    "sourceName": "Walking, Treadmill",
+    "images": [
+      "upr_assets/exercises/Walking_Treadmill_0.jpg",
+      "upr_assets/exercises/Walking_Treadmill_1.jpg"
+    ],
+    "focus": "Восстановительное движение без гонки за скоростью.",
+    "setup": [
+      "Корпус высокий, взгляд вперёд.",
+      "Плечи расслаблены, шаг естественный."
+    ],
+    "steps": [
+      "Иди в темпе, при котором можно говорить фразами.",
+      "Стопу ставь мягко, не бей пяткой.",
+      "Дыши ровно, не ускоряйся в горку.",
+      "Если пульс растёт выше плана, снизь темп."
+    ],
+    "mistakes": [
+      "Зажатые плечи.",
+      "Слишком длинный шаг.",
+      "Превращение ходьбы в кардио-тест."
+    ],
+    "cues": [
+      "Разговорный темп.",
+      "Плечи мягкие.",
+      "Шаг ровный."
+    ]
+  },
+  "Ходьба": {
+    "imageId": "Walking_Treadmill",
+    "sourceName": "Walking, Treadmill",
+    "images": [
+      "upr_assets/exercises/Walking_Treadmill_0.jpg",
+      "upr_assets/exercises/Walking_Treadmill_1.jpg"
+    ],
+    "focus": "Лёгкое восстановление и поддержание активности.",
+    "setup": [
+      "Корпус ровный, руки движутся свободно.",
+      "Темп спокойный, без одышки."
+    ],
+    "steps": [
+      "Начни медленно 2 минуты.",
+      "Держи ровный шаг и расслабленные плечи.",
+      "Не задирай скорость, если день облегчённый.",
+      "Закончить лучше плавным снижением темпа."
+    ],
+    "mistakes": [
+      "Сутулость.",
+      "Слишком быстрый темп.",
+      "Ходьба через боль в стопах или коленях."
+    ],
+    "cues": [
+      "Легко.",
+      "Ровно.",
+      "Без спешки."
+    ]
+  },
+  "Лёгкая растяжка": {
+    "imageId": "Chair_Lower_Back_Stretch",
+    "sourceName": "Chair Lower Back Stretch",
+    "images": [
+      "upr_assets/exercises/Chair_Lower_Back_Stretch_0.jpg",
+      "upr_assets/exercises/Chair_Lower_Back_Stretch_1.jpg"
+    ],
+    "focus": "Снять напряжение, а не добиваться максимальной гибкости.",
+    "setup": [
+      "Выбери 2-4 зоны: грудь, плечи, поясница, бёдра.",
+      "Движения мягкие, дыхание спокойное."
+    ],
+    "steps": [
+      "Войди в растяжение до ощущения натяжения, не боли.",
+      "Держи 20-40 секунд, дыши ровно.",
+      "Выходи из положения медленно.",
+      "На каждую сторону работай одинаково."
+    ],
+    "mistakes": [
+      "Пружинить в растяжке.",
+      "Тянуть через острую боль.",
+      "Задерживать дыхание."
+    ],
+    "cues": [
+      "Натяжение, не боль.",
+      "Дыши.",
+      "Мягкий выход."
+    ]
+  },
+  "Растяжка ног / поясницы": {
+    "imageId": "Chair_Lower_Back_Stretch",
+    "sourceName": "Chair Lower Back Stretch",
+    "images": [
+      "upr_assets/exercises/Chair_Lower_Back_Stretch_0.jpg",
+      "upr_assets/exercises/Chair_Lower_Back_Stretch_1.jpg"
+    ],
+    "focus": "Мягко разгрузить ноги и поясницу после облегчённой нагрузки.",
+    "setup": [
+      "Работай на полу или у опоры, без резких наклонов.",
+      "Поясница не должна стрелять или неметь."
+    ],
+    "steps": [
+      "Начни с лёгкого наклона к ногам с согнутыми коленями.",
+      "Добавь растяжку ягодицы и задней поверхности бедра.",
+      "Держи каждое положение 20-30 секунд.",
+      "Дыши спокойно, не тяни себя руками силой."
+    ],
+    "mistakes": [
+      "Округление через боль.",
+      "Рывки в наклоне.",
+      "Сравнение сторон через силу."
+    ],
+    "cues": [
+      "Мягко.",
+      "Дыхание ровное.",
+      "После растяжки легче, не больнее."
+    ]
+  },
+  "Колесо с колен": {
+    "imageId": "Ab_Roller",
+    "sourceName": "Ab Roller",
+    "images": [
+      "upr_assets/exercises/Ab_Roller_0.jpg",
+      "upr_assets/exercises/Ab_Roller_1.jpg"
+    ],
+    "focus": "Пресс против прогиба поясницы: главное не дальность, а контроль.",
+    "setup": [
+      "Встань на колени, колесо под плечами.",
+      "Подкрути таз, напряги живот и ягодицы."
+    ],
+    "steps": [
+      "Кати колесо вперёд настолько, насколько можешь удержать поясницу ровной.",
+      "Рёбра не выпускай вперёд, таз не проваливай.",
+      "На дальней точке остановись на мгновение.",
+      "Вернись назад за счёт пресса, не складываясь только тазом."
+    ],
+    "mistakes": [
+      "Провал поясницы.",
+      "Слишком дальний выкат.",
+      "Рывок назад руками.",
+      "Расслабленный живот."
+    ],
+    "cues": [
+      "Рёбра вниз.",
+      "Таз подкручен.",
+      "Амплитуда честная."
+    ]
+  },
+  "Подъём ног лёжа": {
+    "imageId": "Flat_Bench_Lying_Leg_Raise",
+    "sourceName": "Flat Bench Lying Leg Raise",
+    "images": [
+      "upr_assets/exercises/Flat_Bench_Lying_Leg_Raise_0.jpg",
+      "upr_assets/exercises/Flat_Bench_Lying_Leg_Raise_1.jpg"
+    ],
+    "focus": "Нижняя часть пресса и контроль таза без отрыва поясницы.",
+    "setup": [
+      "Ляг на спину, поясница прижата или нейтральна без боли.",
+      "Руки можно положить вдоль корпуса или под таз для контроля."
+    ],
+    "steps": [
+      "Подними ноги до комфортного угла.",
+      "Опускай медленно, пока поясница не начинает отрываться.",
+      "Остановись до потери контроля.",
+      "Верни ноги вверх, сохраняя живот напряжённым."
+    ],
+    "mistakes": [
+      "Поясница отрывается.",
+      "Бросок ног вниз.",
+      "Задержка дыхания.",
+      "Слишком большая амплитуда ради сложности."
+    ],
+    "cues": [
+      "Поясница на месте.",
+      "Вниз медленно.",
+      "Живот держит."
+    ]
+  },
+  "Гиперэкстензия": {
+    "imageId": "Hyperextensions_Back_Extensions",
+    "sourceName": "Hyperextensions (Back Extensions)",
+    "images": [
+      "upr_assets/exercises/Hyperextensions_Back_Extensions_0.jpg",
+      "upr_assets/exercises/Hyperextensions_Back_Extensions_1.jpg"
+    ],
+    "focus": "Ягодицы, задняя поверхность бедра и разгибатели спины без переразгибания.",
+    "setup": [
+      "Зафиксируй ноги, линия сгиба примерно в области таза.",
+      "Спина нейтральная, руки на груди или у головы без тяги за шею."
+    ],
+    "steps": [
+      "Опускай корпус вниз с контролем.",
+      "Поднимайся до прямой линии тела, не выше.",
+      "Вверху сожми ягодицы и остановись на мгновение.",
+      "Опускайся снова без рывка."
+    ],
+    "mistakes": [
+      "Переразгибание поясницы сверху.",
+      "Рывок корпусом.",
+      "Сгибание шеи.",
+      "Слишком большой дополнительный вес."
+    ],
+    "cues": [
+      "До прямой линии.",
+      "Ягодицы включить.",
+      "Поясницу не ломать."
+    ]
+  },
+  "Пуловер с гантелью лёжа на полу": {
+    "imageId": "Bent-Arm_Dumbbell_Pullover",
+    "sourceName": "Bent-Arm Dumbbell Pullover",
+    "images": [
+      "upr_assets/exercises/Bent-Arm_Dumbbell_Pullover_0.jpg",
+      "upr_assets/exercises/Bent-Arm_Dumbbell_Pullover_1.jpg"
+    ],
+    "focus": "Широчайшие, грудь и подвижность плеча в безопасной амплитуде пола.",
+    "setup": [
+      "Ляг на пол, колени согнуты, поясница спокойная.",
+      "Держи гантель двумя руками над грудью, локти немного согнуты."
+    ],
+    "steps": [
+      "Веди гантель за голову медленно, пока плечам комфортно.",
+      "Пол ограничит лишнюю глубину: не пытайся продавить амплитуду.",
+      "Сохраняй рёбра вниз, не выгибай поясницу.",
+      "Верни гантель над грудью по той же дуге."
+    ],
+    "mistakes": [
+      "Слишком прямые локти.",
+      "Прогиб поясницы.",
+      "Опускание через боль в плечах.",
+      "Рывок из нижней точки."
+    ],
+    "cues": [
+      "Рёбра вниз.",
+      "Плечо комфортно.",
+      "Дуга плавная."
+    ]
+  },
+  "Сгибания гантелей стоя": {
+    "imageId": "Dumbbell_Bicep_Curl",
+    "sourceName": "Dumbbell Bicep Curl",
+    "images": [
+      "upr_assets/exercises/Dumbbell_Bicep_Curl_0.jpg",
+      "upr_assets/exercises/Dumbbell_Bicep_Curl_1.jpg"
+    ],
+    "focus": "Бицепс без раскачки и без помощи спиной.",
+    "setup": [
+      "Стой ровно, гантели по бокам, локти рядом с корпусом.",
+      "Плечи опущены, живот слегка напряжён."
+    ],
+    "steps": [
+      "Сгибай руки, сохраняя локти почти на месте.",
+      "Вверху не выноси локти далеко вперёд.",
+      "Опускай гантели медленно до полного контроля.",
+      "Не расслабляйся внизу полностью, сохраняй напряжение."
+    ],
+    "mistakes": [
+      "Раскачка корпусом.",
+      "Локти уходят назад-вперёд.",
+      "Слишком быстрый спуск.",
+      "Плечи поднимаются к ушам."
+    ],
+    "cues": [
+      "Локти у корпуса.",
+      "Вниз медленно.",
+      "Корпус тихий."
+    ]
+  },
+  "Молотковые сгибания": {
+    "imageId": "Hammer_Curls",
+    "sourceName": "Hammer Curls",
+    "images": [
+      "upr_assets/exercises/Hammer_Curls_0.jpg",
+      "upr_assets/exercises/Hammer_Curls_1.jpg"
+    ],
+    "focus": "Брахиалис и предплечья нейтральным хватом.",
+    "setup": [
+      "Держи гантели нейтрально, ладони смотрят друг на друга.",
+      "Локти рядом с корпусом, плечи расслаблены."
+    ],
+    "steps": [
+      "Сгибай руку без разворота кисти.",
+      "Доведи гантель к плечу без выноса локтя вперёд.",
+      "Опускай медленно, сохраняя нейтральное запястье.",
+      "Чередуй руки или делай одновременно, но без раскачки."
+    ],
+    "mistakes": [
+      "Разворот кисти в обычный подъём.",
+      "Качание корпусом.",
+      "Залом запястья.",
+      "Слишком тяжёлый вес."
+    ],
+    "cues": [
+      "Молотковый хват.",
+      "Запястье ровное.",
+      "Без маха."
+    ]
+  },
+  "Лёгкая добивка на бицепс": {
+    "imageId": "Dumbbell_Bicep_Curl",
+    "sourceName": "Dumbbell Bicep Curl",
+    "images": [
+      "upr_assets/exercises/Dumbbell_Bicep_Curl_0.jpg",
+      "upr_assets/exercises/Dumbbell_Bicep_Curl_1.jpg"
+    ],
+    "focus": "Лёгкое добивание бицепса без дискомфорта в локте.",
+    "setup": [
+      "Возьми лёгкие гантели.",
+      "Стой ровно, локти рядом с корпусом."
+    ],
+    "steps": [
+      "Делай повторения в ровном темпе.",
+      "Остановись, если локоть или кисть дают неприятный сигнал.",
+      "Не гонись за отказом, цель - кровоток и техника.",
+      "Опускай вес полностью под контролем."
+    ],
+    "mistakes": [
+      "Добивка через боль.",
+      "Читинг корпусом.",
+      "Слишком большой вес после основных подходов."
+    ],
+    "cues": [
+      "Легко.",
+      "Чисто.",
+      "Локти берегём."
+    ]
+  },
+  "Лёгкий прогрев": {
+    "imageId": "Walking_Treadmill",
+    "sourceName": "Walking, Treadmill",
+    "images": [
+      "upr_assets/exercises/Walking_Treadmill_0.jpg",
+      "upr_assets/exercises/Walking_Treadmill_1.jpg"
+    ],
+    "focus": "Перед баней или восстановлением мягко разогреться без перегрева.",
+    "setup": [
+      "Начинай спокойно, не на полный желудок.",
+      "Ориентируйся на самочувствие и дыхание."
+    ],
+    "steps": [
+      "5-7 минут лёгкого движения или прогрева.",
+      "Дыши ровно, не задерживай дыхание.",
+      "Если кружится голова или пульс резко растёт, остановись.",
+      "После прогрева спокойно восстановись перед следующим этапом."
+    ],
+    "mistakes": [
+      "Слишком резкий старт.",
+      "Игнорирование головокружения.",
+      "Соревновательный темп в восстановительный день."
+    ],
+    "cues": [
+      "Спокойно.",
+      "Самочувствие главное.",
+      "Без героизма."
+    ]
+  },
+  "Основной заход": {
+    "imageId": "Trail_Running_Walking",
+    "sourceName": "Trail Running/Walking",
+    "images": [
+      "upr_assets/exercises/Trail_Running_Walking_0.jpg",
+      "upr_assets/exercises/Trail_Running_Walking_1.jpg"
+    ],
+    "focus": "Контролируемый восстановительный блок: тепло должно помогать, а не выбивать.",
+    "setup": [
+      "Перед заходом выпей воды.",
+      "Пульс и дыхание должны оставаться под контролем."
+    ],
+    "steps": [
+      "Начни с комфортной температуры и времени.",
+      "Следи за дыханием, не сиди через дискомфорт.",
+      "После выхода остынь спокойно, без резкого холода, если самочувствие не идеальное.",
+      "Переходи к следующему заходу только после восстановления."
+    ],
+    "mistakes": [
+      "Сидеть через головокружение.",
+      "Гнаться за временем.",
+      "Игнорировать сухость во рту и сердцебиение."
+    ],
+    "cues": [
+      "Пульс под контролем.",
+      "Вышел раньше - выиграл.",
+      "Вода и пауза."
+    ]
+  },
+  "Третий заход": {
+    "imageId": "Trail_Running_Walking",
+    "sourceName": "Trail Running/Walking",
+    "images": [
+      "upr_assets/exercises/Trail_Running_Walking_0.jpg",
+      "upr_assets/exercises/Trail_Running_Walking_1.jpg"
+    ],
+    "focus": "Опциональный лёгкий заход только при хорошем самочувствии.",
+    "setup": [
+      "Оцени пульс, голову, дыхание и общее состояние.",
+      "Если есть сомнение, пропусти."
+    ],
+    "steps": [
+      "Сделай заход короче основного.",
+      "Не добавляй интенсивность.",
+      "Выходи при первом признаке дискомфорта.",
+      "После - вода и спокойное восстановление."
+    ],
+    "mistakes": [
+      "Делать третий заход “потому что надо”.",
+      "Удлинять время при усталости.",
+      "Игнорировать сердцебиение."
+    ],
+    "cues": [
+      "Можно пропустить.",
+      "Коротко.",
+      "Самочувствие первое."
+    ]
+  }
+};
+const TECHNIQUE_ALIASES = {
+  'Ходьба':'Спокойная ходьба',
+  'Растяжка ног / поясницы':'Лёгкая растяжка',
+  'Лёгкая добивка на бицепс':'Сгибания гантелей стоя'
+};
+function techniqueFor(name){ return TECHNIQUE_DATA[name] || TECHNIQUE_DATA[TECHNIQUE_ALIASES[name]] || null; }
+function listHtml(items, ordered=false){ const tag=ordered?'ol':'ul'; return `<${tag}>${(items||[]).map(x=>`<li>${x}</li>`).join('')}</${tag}>`; }
+function renderTechnique(e){
+  const box=document.getElementById('techCard'); if(!box) return;
+  const data=techniqueFor(e.name);
+  if(!data){ box.innerHTML=`<div class="tech-head"><div><b>Техника</b><span>Подробной карточки пока нет. Используй примечание выше и работай без боли.</span></div></div>`; return; }
+  const figs=(data.images||[]).slice(0,2).map((src,i)=>`<figure class="tech-figure"><img src="${src}" alt="${e.name}: фаза ${i+1}" loading="lazy"><figcaption>Фаза ${i+1}</figcaption></figure>`).join('');
+  box.innerHTML=`
+    <div class="tech-head"><div><b>Иллюстрация и техника</b><span>${data.focus}</span></div><div class="tech-source">Источник: free-exercise-db</div></div>
+    <div class="tech-layout">
+      <div class="tech-gallery">${figs}</div>
+      <div>
+        <div class="tech-section"><h3>Исходное положение</h3>${listHtml(data.setup)}</div>
+        <div class="tech-section"><h3>Как выполнять</h3>${listHtml(data.steps,true)}</div>
+        <div class="tech-section"><h3>Частые ошибки</h3>${listHtml(data.mistakes)}</div>
+        <div class="tech-section"><h3>Короткие подсказки</h3><div class="tech-cues">${(data.cues||[]).map(x=>`<span class="cue">${x}</span>`).join('')}</div></div>
+      </div>
+    </div>`;
+}
+
+const RECIPES = {
+  "Понедельник": {
+    "title": "Понедельник — рыба + рис + овощи",
+    "quick": {
+      "Основное блюдо": "Рыба 300 г + рис 80–100 г + овощи 400 г",
+      "Яйцо": "1–2 варёных яйца",
+      "Орехи / семечки": "семечки 10 г можно добавить в готовые овощи",
+      "Масло": "оливковое 5–10 г в готовое блюдо"
+    },
+    "products": [
+      "Рыба — 300 г: минтай, хек, треска или другая нежирная рыба.",
+      "Рис сухой — 80–100 г.",
+      "Овощи — 400 г: замороженная смесь, капуста, морковь, перец, кабачок или брокколи.",
+      "Яйца — 1–2 шт., лучше варёные.",
+      "Семечки — до 10 г по желанию.",
+      "Оливковое масло — 5–10 г после приготовления."
+    ],
+    "prep": [
+      "Рис промыть 3–5 раз до более прозрачной воды.",
+      "Рыбу обсушить, проверить косточки, слегка посолить только если приправа для рыбы не солёная.",
+      "Овощи можно готовить без разморозки."
+    ],
+    "spices": [
+      "Для рыбы: приправа для рыбы 1 ч. л., укроп 1/2 ч. л., базилик 1/4 ч. л., чеснок 1/4 ч. л., паприка 1/4 ч. л.",
+      "Для риса: куркума 1/4 ч. л., паприка 1/2 ч. л., щепотка соли.",
+      "Для овощей: паприка 1/4 ч. л. в начале, базилик 1/2 ч. л. за 5 минут до конца."
+    ],
+    "steps": [
+      "Рыбу натереть специями и оставить на 10 минут.",
+      "Рис залить 180–230 мл воды, добавить куркуму, паприку и щепотку соли.",
+      "Довести рис до кипения, убавить огонь, готовить под крышкой 15–18 минут, затем оставить под крышкой ещё 5 минут.",
+      "Рыбу положить в сковороду, добавить 50–80 мл воды, закрыть крышкой и готовить 15–20 минут на слабом огне.",
+      "Овощи тушить 7–10 минут, базилик добавить ближе к концу.",
+      "В готовые овощи или рис добавить оливковое масло 5–10 г.",
+      "Яйца сварить отдельно: после закипания 8–10 минут, затем охладить."
+    ],
+    "timing": "Рис — 15–18 минут + 5 минут настояться. Рыба — 15–20 минут. Овощи — 7–10 минут. Весь ужин обычно 25–35 минут.",
+    "serving": "На тарелку: рис, рыба, овощи, рядом 1–2 варёных яйца. Семечки добавлять только в готовые овощи.",
+    "tips": "Не перегревай льняное масло; в этот день лучше оливковое. Рыбу не пересаливать — приправа для рыбы часто уже содержит соль.",
+    "taste": "Мягкий рыбный вкус, рис с жёлто-красным оттенком, овощи ароматные без тяжёлой остроты."
+  },
+  "Вторник": {
+    "title": "Вторник — мясо + гречка + овощи",
+    "quick": {
+      "Основное блюдо": "Мясо 300–320 г + гречка 100–110 г + овощи 400 г",
+      "Яйцо": "1 жареное яйцо",
+      "Орехи / семечки": "семечки 10 г в овощи",
+      "Масло": "для яйца масло виноградной косточки 1/2–1 ч. л."
+    },
+    "products": [
+      "Мясо — 300–320 г: говядина, индейка, курица или нежирная свинина.",
+      "Гречка сухая — 100–110 г.",
+      "Овощи — 400 г.",
+      "Яйцо — 1 шт. жареное.",
+      "Семечки — 10 г в готовые овощи.",
+      "Масло виноградной косточки — 1/2–1 ч. л. для яйца или тушения."
+    ],
+    "prep": [
+      "Мясо нарезать небольшими кусками 2–3 см, чтобы быстрее протушилось.",
+      "Гречку промыть, при желании слегка прокалить 1–2 минуты на сухой сковороде.",
+      "Овощи подготовить отдельно, не пересаливать."
+    ],
+    "spices": [
+      "Для мяса: кориандр 1/2 ч. л., хмели-сунели 1/2 ч. л., чеснок 1/2 ч. л., сушёный лук 1/2 ч. л., паприка 1/2 ч. л., перец щепотка, соль 1/4 ч. л.",
+      "Для гречки: кориандр 1/4 ч. л., сушёный лук 1/4 ч. л., щепотка соли.",
+      "Для овощей: базилик 1/2 ч. л. в конце."
+    ],
+    "steps": [
+      "Мясо натереть специями и оставить на 10–15 минут.",
+      "В сковороду добавить 80–120 мл воды, положить мясо, тушить под крышкой 25–35 минут.",
+      "Если вода выкипает — добавлять по 20–30 мл, не жарить до сухости.",
+      "Гречку залить 220–250 мл воды, добавить специи, довести до кипения.",
+      "Готовить гречку под крышкой 15–20 минут, затем оставить на 5 минут.",
+      "Овощи тушить 7–12 минут, базилик добавить в конце.",
+      "Яйцо пожарить отдельно на 1/2–1 ч. л. масла; желток можно оставить мягким, если хорошо переносится."
+    ],
+    "timing": "Мясо — 25–35 минут. Гречка — 15–20 минут. Овощи — 7–12 минут. Яйцо — 3–5 минут.",
+    "serving": "Гречка снизу, сверху мясо с соком, рядом овощи и 1 жареное яйцо. Семечки — только в готовые овощи.",
+    "tips": "Это тяжёлый день ног: не урезай гречку слишком сильно, чтобы было восстановление. Если мясо жирнее обычного — масло к овощам не добавлять.",
+    "taste": "Плотный мясной вкус, гречка пряная, блюдо хорошо насыщает после тяжёлой тренировки."
+  },
+  "Среда": {
+    "title": "Среда — рыба + пшено + овощи",
+    "quick": {
+      "Основное блюдо": "Рыба 280–300 г + пшено 70–80 г + овощи 400 г",
+      "Яйцо": "без яйца",
+      "Орехи / семечки": "орехи 15–20 г отдельно",
+      "Масло": "оливковое 5 г или льняное 5 г в готовое тёплое блюдо"
+    },
+    "products": [
+      "Рыба — 280–300 г.",
+      "Пшено сухое — 70–80 г.",
+      "Овощи — 400 г.",
+      "Орехи — 15–20 г отдельно.",
+      "Оливковое или льняное масло — 5 г."
+    ],
+    "prep": [
+      "Пшено промыть 3–4 раза и обязательно обдать кипятком, чтобы убрать горечь.",
+      "Рыбу натереть специями заранее.",
+      "Льняное масло добавлять только в тёплую, не горячую еду."
+    ],
+    "spices": [
+      "Для рыбы: приправа для рыбы 3/4 ч. л., укроп 1/2 ч. л., базилик 1/2 ч. л., чеснок 1/4 ч. л.",
+      "Для пшена: куркума 1/4 ч. л., паприка 1/4 ч. л., щепотка соли.",
+      "Для овощей: паприка 1/2 ч. л. в начале, базилик 1/4 ч. л. за 5–7 минут до конца."
+    ],
+    "steps": [
+      "Пшено промыть, обдать кипятком, залить 220–260 мл воды.",
+      "Добавить куркуму, паприку и щепотку соли.",
+      "Первые 3–4 минуты варить без крышки, затем крышку оставить приоткрытой и готовить 18–22 минуты.",
+      "Рыбу натереть специями, оставить на 10 минут.",
+      "Готовить рыбу с 50–80 мл воды под крышкой 15–20 минут.",
+      "Овощи тушить 8–12 минут, ароматные травы добавить ближе к концу.",
+      "Масло добавить после выключения, когда блюдо немного остынет."
+    ],
+    "timing": "Пшено — 18–22 минуты. Рыба — 15–20 минут. Овощи — 8–12 минут.",
+    "serving": "Пшено + рыба + овощи. Орехи съесть отдельно, лучше не смешивать с горячим блюдом.",
+    "tips": "Если пшено получилось густым — добавить 1–2 ст. л. горячей воды и дать постоять под крышкой 3 минуты.",
+    "taste": "Лёгкий восстановительный ужин, пшено мягкое, рыба без резкого запаха."
+  },
+  "Четверг": {
+    "title": "Четверг — горох + овощи + масло",
+    "quick": {
+      "Основное блюдо": "Горох 180–220 г + овощи 500 г + масло 15 г",
+      "Яйцо": "1 варёное яйцо",
+      "Орехи / семечки": "семечки 10–15 г в готовое рагу",
+      "Масло": "оливковое 10 г + льняное 5 г после выключения"
+    },
+    "products": [
+      "Горох сухой — 180–220 г.",
+      "Овощи — 500 г.",
+      "Масло — всего 15 г: оливковое 10 г + льняное 5 г.",
+      "Яйцо — 1 варёное.",
+      "Семечки — 10–15 г в готовое рагу."
+    ],
+    "prep": [
+      "Горох тщательно промыть до чистой воды.",
+      "Если есть время — можно замочить на 2–4 часа, но рецепт рассчитан и без замачивания.",
+      "Пену в начале варки обязательно снять."
+    ],
+    "spices": [
+      "Карри 1/2 ч. л., кориандр 1/2 ч. л., сушёный лук 1/2 ч. л.",
+      "Хмели-сунели 1/2 ч. л., чеснок 1/4 ч. л., паприка 1/2 ч. л.",
+      "Овощи: базилик 1/2 ч. л. в конце."
+    ],
+    "steps": [
+      "Горох залить 650–800 мл воды и довести до кипения.",
+      "Первые 10–12 минут варить без крышки, пену снять.",
+      "Затем убавить огонь, крышку оставить приоткрытой и варить до мягкости 50–75 минут.",
+      "Через 20 минут добавить карри, кориандр и сушёный лук.",
+      "За 10–15 минут до конца добавить овощи прямо в горох.",
+      "За 5–7 минут до конца добавить хмели-сунели, чеснок и паприку.",
+      "После выключения добавить оливковое и льняное масло, перемешать.",
+      "Сверху можно добавить семечки; яйцо подать отдельно."
+    ],
+    "timing": "Без замачивания горох обычно 50–75 минут. С замачиванием — быстрее, примерно 35–50 минут.",
+    "serving": "Подавать как густое рагу. Яйцо отдельно или нарезать сверху. Семечки добавлять только после готовности.",
+    "tips": "Если рагу слишком жидкое — последние 5–10 минут готовить без крышки. Если густое — добавить немного горячей воды.",
+    "taste": "Густое пряное рагу, хорошо насыщает в день восстановления."
+  },
+  "Пятница": {
+    "title": "Пятница — горох + овёс + овощи",
+    "quick": {
+      "Основное блюдо": "Горох 160–200 г + овёс 40–50 г + овощи 400–500 г",
+      "Яйцо": "без яйца",
+      "Орехи / семечки": "орехи 15 г отдельно",
+      "Масло": "оливковое 5–10 г после выключения"
+    },
+    "products": [
+      "Горох сухой — 160–200 г.",
+      "Овёс — 40–50 г, лучше обычные хлопья без сахара.",
+      "Овощи — 400–500 г.",
+      "Орехи — 15 г отдельно.",
+      "Оливковое масло — 5–10 г."
+    ],
+    "prep": [
+      "Горох промыть, пену в начале снять.",
+      "Овёс добавлять только ближе к концу, иначе может пригореть.",
+      "После добавления овса часто мешать."
+    ],
+    "spices": [
+      "Через 20 минут: карри 1/4 ч. л., куркума 1/4 ч. л., кориандр 1/4 ч. л., сушёный лук 1/2 ч. л.",
+      "Финиш: чеснок 1/4 ч. л., базилик 1/4 ч. л., паприка 1/4 ч. л."
+    ],
+    "steps": [
+      "Горох залить 750–900 мл воды и довести до кипения.",
+      "Первые 10–12 минут варить без крышки, пену снять.",
+      "Дальше варить с приоткрытой крышкой 45–65 минут.",
+      "Через 20 минут добавить карри, куркуму, кориандр и сушёный лук.",
+      "За 12–15 минут до конца добавить овощи.",
+      "За 10–12 минут до конца добавить овёс и готовить уже без крышки, часто помешивая.",
+      "За 3–5 минут до конца добавить чеснок, базилик и паприку.",
+      "После выключения добавить оливковое масло 5–10 г."
+    ],
+    "timing": "Горох — 45–65 минут. После добавления овса — 10–12 минут активного помешивания.",
+    "serving": "Подавать как густую мягкую кашу-рагу. Орехи съесть отдельно, не добавлять в горячее рагу.",
+    "tips": "Если желудку тяжело от гороха, уменьши порцию гороха и увеличь овощи. Овёс делает блюдо мягче.",
+    "taste": "Мягкий гороховый вариант, овёс сглаживает вкус и делает блюдо спокойным для желудка."
+  },
+  "Суббота": {
+    "title": "Суббота — мясо + полба + овощи",
+    "quick": {
+      "Основное блюдо": "Мясо 300 г + полба 90–100 г + овощи 400 г",
+      "Яйцо": "2 жареных яйца",
+      "Орехи / семечки": "семечки 10 г можно в овощи",
+      "Масло": "яйца жарить на 1/2–1 ч. л. масла"
+    },
+    "products": [
+      "Мясо — 300 г.",
+      "Полба сухая — 90–100 г.",
+      "Овощи — 400 г.",
+      "Яйца — 2 шт. жареные.",
+      "Семечки — 10 г по желанию.",
+      "Масло виноградной косточки — 1/2–1 ч. л. для яиц."
+    ],
+    "prep": [
+      "Мясо нарезать небольшими кусками.",
+      "Полбу промыть; если крупа грубая, можно замочить на 30–60 минут.",
+      "Яйца жарить в конце, чтобы они были свежими и не остыли."
+    ],
+    "spices": [
+      "Для мяса: хмели-сунели 1/2 ч. л., кориандр 1/2 ч. л., чеснок 1/2 ч. л., сушёный лук 1/2 ч. л., базилик 1/4 ч. л., паприка 1/2 ч. л., перец щепотка.",
+      "Для полбы: куркума 1/4 ч. л. или паприка 1/2 ч. л., щепотка соли.",
+      "Для овощей: базилик 1/2 ч. л. в конце."
+    ],
+    "steps": [
+      "Мясо натереть специями и оставить на 10–15 минут.",
+      "В сковороду добавить 80–120 мл воды, положить мясо и тушить под крышкой 25–35 минут.",
+      "Полбу залить 270–300 мл воды, добавить специи, варить с приоткрытой крышкой 25–30 минут.",
+      "Овощи тушить отдельно или добавить к мясу последние 10–12 минут.",
+      "Базилик в овощи добавить в конце.",
+      "Яйца пожарить отдельно на 1/2–1 ч. л. масла.",
+      "Семечки добавить в готовые овощи по желанию."
+    ],
+    "timing": "Мясо — 25–35 минут. Полба — 25–30 минут. Овощи — 10–12 минут. Яйца — 4–6 минут.",
+    "serving": "Полба + мясо + овощи, сверху или рядом 2 жареных яйца. Если яйца жирные, масло в основное блюдо не добавлять.",
+    "tips": "Суббота после спины/бицепса: углеводы из полбы нужны для восстановления. Не добавляй одновременно много масла, яйца и семечки.",
+    "taste": "Насыщенный мясной вкус, полба плотная и ореховая, хорошо подходит после тренировки рук."
+  },
+  "Воскресенье": {
+    "title": "Воскресенье — рыба + овёс + овощи",
+    "quick": {
+      "Основное блюдо": "Рыба 280 г + овёс 50 г + овощи 500 г",
+      "Яйцо": "1 варёное яйцо",
+      "Орехи / семечки": "орехи 15 г отдельно",
+      "Масло": "льняное 5 г или оливковое 5–10 г"
+    },
+    "products": [
+      "Рыба — 280 г.",
+      "Овёс — 50 г без сахара.",
+      "Овощи — 500 г.",
+      "Яйцо — 1 варёное.",
+      "Орехи — 15 г отдельно.",
+      "Льняное масло 5 г или оливковое 5–10 г."
+    ],
+    "prep": [
+      "Рыбу натереть специями заранее.",
+      "Овёс готовить как несладкую кашу, без молока и сахара.",
+      "Льняное масло не нагревать — только в готовые овощи."
+    ],
+    "spices": [
+      "Для рыбы: приправа для рыбы 1 ч. л., укроп 1/2 ч. л., базилик 1/2 ч. л., чеснок 1/4 ч. л.",
+      "Для овса: куркума 1/8–1/4 ч. л. или кардамон маленькая щепотка.",
+      "Для овощей: паприка 1/2 ч. л. в начале, базилик 1/2 ч. л. в конце."
+    ],
+    "steps": [
+      "Рыбу натереть специями и оставить на 10 минут.",
+      "Готовить рыбу с 50–80 мл воды под крышкой 15–20 минут.",
+      "Овёс залить 180–220 мл воды, добавить щепотку специи и варить без крышки 7–10 минут, помешивая.",
+      "Овощи тушить 10–12 минут: паприку добавить в начале, базилик в конце.",
+      "Яйцо сварить 8–10 минут после закипания.",
+      "Масло добавить только в готовые овощи.",
+      "Орехи съесть отдельно, особенно если ужин уже получился жирным."
+    ],
+    "timing": "Рыба — 15–20 минут. Овёс — 7–10 минут. Овощи — 10–12 минут. Яйцо — 8–10 минут.",
+    "serving": "Рыба + овощи + несладкий овёс. Яйцо и орехи отдельно. Хороший вариант после бани или восстановительного дня.",
+    "tips": "Если была баня, не делай ужин слишком солёным; лучше вода и умеренно тёплая еда.",
+    "taste": "Спокойный восстановительный ужин, мягкий вкус, без тяжёлых специй."
+  }
+};
+
+const FAT_RULES = [["2 жареных яйца", "Масло в основном блюде уменьшить на 5–10 г"], ["Орехи 20 г", "Масло в овощах уменьшить на 5 г"], ["Семечки 15 г", "Масло в блюде уменьшить на 5 г"], ["Орехи + семечки в один день", "Дополнительное масло лучше не добавлять"]];
+
+function arrHtml(items){ return (items||[]).map(x=>`<li>${x}</li>`).join(''); }
+function renderRecipes(){
+  const d=getDay(); const r=RECIPES[d]; if(!r) return;
+  const title=document.getElementById('recipeTitle'); if(title) title.textContent=`🍽️ ${r.title}`;
+  const box=document.getElementById('recipeContent'); if(!box) return;
+  const q=Object.entries(r.quick).map(([k,v])=>`<div class="mini"><b>${k}</b>${v}</div>`).join('');
+  const fatRows=FAT_RULES.map(row=>`<tr><td>${row[0]}</td><td>${row[1]}</td></tr>`).join('');
+  box.innerHTML=`
+    <div class="recipe-card">
+      <h3>Состав ужина</h3>
+      <div class="recipe-quick">${q}</div>
+    </div>
+    <div class="recipe-card">
+      <h3>Очень подробный рецепт</h3>
+      <div class="recipe-steps">
+        <div class="recipe-step"><b>1. Продукты</b><ul>${arrHtml(r.products)}</ul></div>
+        <div class="recipe-step"><b>2. Подготовка</b><ul>${arrHtml(r.prep)}</ul></div>
+        <div class="recipe-step"><b>3. Приправы</b><ul>${arrHtml(r.spices)}</ul></div>
+        <div class="recipe-step"><b>4. Пошаговое приготовление</b><ol>${arrHtml(r.steps)}</ol></div>
+        <div class="recipe-step"><b>5. Время</b><br>${r.timing}</div>
+        <div class="recipe-step"><b>6. Подача</b><br>${r.serving}</div>
+        <div class="recipe-step"><b>7. Вкус</b><br>${r.taste}</div>
+        <div class="recipe-step"><b>8. Важная подсказка</b><br>${r.tips}</div>
+      </div>
+      <div class="fat-note"><b>Памятка:</b> рыбу натирать специями заранее на 10 минут; крупы варить со специями сразу в воде; чеснок, базилик и укроп добавлять ближе к концу; льняное масло не нагревать.</div>
+    </div>
+    <div class="recipe-card">
+      <h3>Корректировка жиров</h3>
+      <table class="recipe-table"><tr><th>Если добавил</th><th>Тогда уменьши</th></tr>${fatRows}</table>
+    </div>`;
+}
+function speakRecipe(){
+  const r=RECIPES[getDay()]; if(!r) return;
+  const steps=(r.steps||[]).join('. ');
+  speak(`${r.title}. Продукты: ${(r.products||[]).join('. ')}. Приправы: ${(r.spices||[]).join('. ')}. Приготовление: ${steps}. Подача: ${r.serving}`);
+}
+function renderCalendar(){ const cal=document.getElementById('calendar'); cal.innerHTML=''; const selected=dateKey(); for(let i=0;i<93;i++){ const d=new Date(START); d.setDate(START.getDate()+i); const iso=d.toISOString().slice(0,10); const data=state[iso]; const has=data && (JSON.stringify(data.supp||{}).includes('true') || JSON.stringify(data.train||{}).includes('true') || JSON.stringify(data.cream||{}).includes('true')); const el=document.createElement('div'); el.className='daycell '+(iso===selected?'active ':'')+(has?'has':''); el.innerHTML=`${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}<small>${DAYS[d.getDay()].slice(0,2)}</small>`; el.onclick=()=>{setDateAndDay(iso); switchTab('train');}; cal.appendChild(el); } }
+function voiceDefaults(){ return {mode:'coach', rate:.88, pitch:.95, volume:1, countdown:true, repeat:true}; }
+function voiceSettings(){ return {...voiceDefaults(), ...(prefs.voice||{})}; }
+function saveVoiceSettings(){
+  prefs.voice={
+    name:document.getElementById('voiceSelect')?.value || '',
+    mode:document.getElementById('voiceMode')?.value || 'coach',
+    rate:parseFloat(document.getElementById('voiceRate')?.value || .88),
+    pitch:parseFloat(document.getElementById('voicePitch')?.value || .95),
+    volume:parseFloat(document.getElementById('voiceVolume')?.value || 1),
+    countdown:!!document.getElementById('voiceCountdown')?.checked,
+    repeat:!!document.getElementById('voiceRepeat')?.checked
+  };
+  savePrefs(); updateVoiceStatus();
+}
+function initVoiceControls(){
+  const s=voiceSettings();
+  const bind=(id, value)=>{ const el=document.getElementById(id); if(el) el.value=value; };
+  bind('voiceMode',s.mode); bind('voiceRate',s.rate); bind('voicePitch',s.pitch); bind('voiceVolume',s.volume);
+  const cd=document.getElementById('voiceCountdown'); if(cd) cd.checked=s.countdown!==false;
+  const rp=document.getElementById('voiceRepeat'); if(rp) rp.checked=s.repeat!==false;
+  ['voiceSelect','voiceMode','voiceRate','voicePitch','voiceVolume','voiceCountdown','voiceRepeat'].forEach(id=>{
+    const el=document.getElementById(id); if(el) el.onchange=saveVoiceSettings;
+  });
+  updateVoiceStatus();
+}
+function rankVoice(v){
+  const name=(v.name||'').toLowerCase(); const lang=(v.lang||'').toLowerCase(); let score=0;
+  if(lang.startsWith('ru')) score+=100;
+  if(name.includes('irina')||name.includes('pavel')||name.includes('russian')) score+=35;
+  if(name.includes('google')||name.includes('microsoft')) score+=18;
+  if(v.localService) score+=8;
+  return score;
+}
+function loadVoices(){
+  const sel=document.getElementById('voiceSelect'); if(!sel) return;
+  const voices=speechSynthesis.getVoices().filter(v=>v.lang.startsWith('ru')||v.lang.startsWith('en')).sort((a,b)=>rankVoice(b)-rankVoice(a));
+  const current=voiceSettings().name;
+  sel.innerHTML='';
+  voices.forEach(v=>{let o=document.createElement('option'); o.value=v.name; o.textContent=`${v.name} (${v.lang})`; sel.appendChild(o);});
+  if(current && voices.some(v=>v.name===current)) sel.value=current;
+  else if(voices[0]){ sel.value=voices[0].name; prefs.voice={...voiceSettings(), name:voices[0].name}; savePrefs(); }
+  updateVoiceStatus();
+}
+function selectedVoice(){ const name=document.getElementById('voiceSelect')?.value; return speechSynthesis.getVoices().find(x=>x.name===name) || null; }
+function voiceRepeatEnabled(){ return voiceSettings().repeat!==false && voiceSettings().mode!=='off'; }
+function updateVoiceStatus(){
+  const el=document.getElementById('voiceStatus'); if(!el) return;
+  const s=voiceSettings(); const v=selectedVoice();
+  const names={coach:'Тренер: короткие команды', full:'Подробно: вся техника', quiet:'Только сигналы таймера', off:'Голос выключен'};
+  el.textContent=s.mode==='off' ? names.off : `${names[s.mode] || names.coach} · ${v ? v.name : 'голос загружается'}`;
+}
+function normalizeSpeechText(text, opts={}){
+  let t=String(text||'').replace(/×/g,' на ').replace(/[🔥🪢✅➡️🔊🏋️💊🍽️📅📊🧹⬇️⬆️🖨️⏰]/g,'').replace(/—/g,' пауза ').replace(/s+/g,' ').trim();
+  const mode=voiceSettings().mode;
+  if(mode==='coach' && !opts.signal){
+    t=t.replace(/Техника:/i,'').replace(/Повторов:/i,'Повторы:');
+    if(t.length>180) t=t.slice(0,180).replace(/[,.;:]?s+S*$/,'')+'.';
+  }
+  if(mode==='quiet' && !opts.signal) return '';
+  return t;
+}
+function speak(text, opts={}){
+  try{
+    const s=voiceSettings(); if(s.mode==='off') return;
+    const clean=normalizeSpeechText(text, opts); if(!clean) return;
+    const item={text:clean, opts, settings:s, voice:selectedVoice()};
+    if(opts.priority){ speechSynthesis.cancel(); voiceQueue=[]; voiceSpeaking=false; }
+    voiceQueue.push(item); pumpVoiceQueue();
+  }catch(e){}
+}
+function pumpVoiceQueue(){
+  if(voiceSpeaking || !voiceQueue.length) return;
+  const item=voiceQueue.shift(); voiceSpeaking=true;
+  const u=new SpeechSynthesisUtterance(item.text);
+  u.lang=item.voice?.lang || 'ru-RU'; u.rate=item.settings.rate; u.pitch=item.settings.pitch; u.volume=item.settings.volume;
+  if(item.voice) u.voice=item.voice;
+  u.onend=u.onerror=()=>{ voiceSpeaking=false; setTimeout(pumpVoiceQueue, 80); };
+  speechSynthesis.speak(u);
+}
+function coachText(kind,e){
+  if(kind==='restStart') return `Отдых ${e.rest}. Дальше ${e.name}. ${e.reps} повторов.`;
+  if(kind==='restDone') return `Отдых закончен. Начинай ${e.name}. ${e.reps} повторов.`;
+  if(kind==='setDone') return `Подход ${selectedSet} выполнен. ${e.name}.`;
+  return '';
+}
+function maybeSpeakCountdown(value){
+  const s=voiceSettings(); if(s.countdown===false || s.mode==='off') return;
+  const marks=[30,10,5,4,3,2,1];
+  if(!marks.includes(value) || countdownSaid[value]) return;
+  if(baseRest && value>=baseRest) return;
+  countdownSaid[value]=true;
+  const text=value>5 ? `Осталось ${value} секунд` : String(value);
+  speak(text, {signal:true});
+}
+function testVoice(){
+  ensureAudio(); playAlarm();
+  speak('Голос тренера включён. Отдых, подходы и финальный отсчёт будут звучать вот так.', {priority:true, signal:true});
+}
+function speakCurrent(){
+  const e=currentExercise(); const s=voiceSettings();
+  const tech=techniqueFor(e.name);
+  const detail=tech ? ` Техника: ${(tech.setup||[]).slice(0,1).join(' ')} ${(tech.steps||[]).slice(0,3).join(' ')}` : ` Техника: ${e.note}`;
+  const text=s.mode==='full'
+    ? `${getDay()}. ${e.name}. Подход ${selectedSet}. Повторов: ${e.reps}.${detail}`
+    : `${e.name}. Подход ${selectedSet}. ${e.reps} повторов. ${e.note}`;
+  speak(text, {priority:true});
+}
+function exportData(){ const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='upr_progress_export.json'; a.click(); }
+function importData(){ document.getElementById('importFile').click(); }
+document.getElementById('importFile').onchange=async(e)=>{ const f=e.target.files[0]; if(!f) return; const txt=await f.text(); state=JSON.parse(txt); save(); renderAll(); };
+function resetDay(){ if(confirm('Сбросить выполнение за выбранную дату?')){ delete state[dateKey()]; save(); renderAll(); } }
+document.addEventListener('keydown',(ev)=>{
+  const tag=(ev.target?.tagName||'').toLowerCase();
+  if(tag==='input' || tag==='select' || tag==='textarea') return;
+  if(ev.key==='Enter'){ ev.preventDefault(); completeSetAndAdvance(); }
+  if(ev.key===' '){ ev.preventDefault(); timerRunning ? pauseTimer() : startRest(); }
+  if(ev.key==='ArrowRight'){ ev.preventDefault(); nextSet(); }
+});
+init();
+</script>
+</body></html>
