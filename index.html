@@ -208,9 +208,23 @@ const DAYS = ["Воскресенье","Понедельник","Вторник"
 const ORDER = ["Понедельник","Вторник","Среда","Четверг","Пятница","Суббота","Воскресенье"];
 const START = new Date("2026-05-16T00:00:00");
 const STORAGE = "UPR_2026_05_16_ADD_SUPP_v1";
-let state = JSON.parse(localStorage.getItem(STORAGE)||"{}");
 const PREFS_STORAGE = "UPR_2026_05_16_PREFS_v2";
-let prefs = JSON.parse(localStorage.getItem(PREFS_STORAGE)||"{}");
+function safeJsonParse(raw, fallback){
+  try{
+    const parsed=JSON.parse(raw||"");
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : fallback;
+  }catch(e){ return fallback; }
+}
+function localISODate(date=new Date()){
+  const d=new Date(date);
+  const y=d.getFullYear();
+  const m=String(d.getMonth()+1).padStart(2,'0');
+  const day=String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+function appDate(iso){ return iso < '2026-05-16' ? '2026-05-16' : iso; }
+let state = safeJsonParse(localStorage.getItem(STORAGE), {});
+let prefs = safeJsonParse(localStorage.getItem(PREFS_STORAGE), {});
 let selectedEx = 0, selectedSet = 1, baseRest = 0, rest = 0, timerId = null, timerDeadline = 0, timerRunning = false, activeTab = prefs.tab || 'train', restWorker = null, restFinishedPending = null, audioCtx = null, voiceQueue = [], voiceSpeaking = false, countdownSaid = {}, diaryDirHandle = null, diarySaveTimer = null; 
 function savePrefs(){ localStorage.setItem(PREFS_STORAGE, JSON.stringify(prefs)); }
 function save(){ localStorage.setItem(STORAGE, JSON.stringify(state)); renderSummary(); renderCalendar(); }
@@ -243,9 +257,7 @@ function suppKey(b,i){ return `${getDay()}_${b}_${i}`; }
 function creamKey(slot){ return `${getDay()}_${slot}`; }
 function init(){
   const di=document.getElementById('dateInput');
-  const today=new Date();
-  const iso = today.toISOString().slice(0,10);
-  const defaultIso = iso < '2026-05-16' ? '2026-05-16' : iso;
+  const defaultIso = appDate(localISODate());
   di.value = prefs.date || defaultIso;
   const ds=document.getElementById('daySelect');
   ORDER.forEach(d=>{let o=document.createElement('option'); o.value=d; o.textContent=d; ds.appendChild(o);});
@@ -270,8 +282,8 @@ function setDateAndDay(iso){
   const di=document.getElementById('dateInput'); const ds=document.getElementById('daySelect');
   di.value=iso; ds.value=dayFromDate(iso); prefs.date=iso; prefs.day=ds.value; savePrefs(); selectedEx=0; selectedSet=1; resetRestToExercise(); renderAll();
 }
-function shiftDate(delta){ const d=new Date(dateKey()+'T00:00:00'); d.setDate(d.getDate()+delta); setDateAndDay(d.toISOString().slice(0,10)); }
-function goToday(){ const iso=new Date().toISOString().slice(0,10); setDateAndDay(iso < '2026-05-16' ? '2026-05-16' : iso); }
+function shiftDate(delta){ const d=new Date(dateKey()+'T00:00:00'); d.setDate(d.getDate()+delta); setDateAndDay(localISODate(d)); }
+function goToday(){ setDateAndDay(appDate(localISODate())); }
 function trainerSettings(){ return {autoRest:prefs.autoRest!==false, autoJump:prefs.autoJump!==false}; }
 function initTrainerControls(){
   const s=trainerSettings();
@@ -632,7 +644,7 @@ function firstOpenSet(p,ds){
 function completionStreak(){
   let count=0; const selected=new Date(dateKey()+'T00:00:00');
   for(let i=0;i<93;i++){
-    const d=new Date(selected); d.setDate(selected.getDate()-i); const iso=d.toISOString().slice(0,10); const data=state[iso];
+    const d=new Date(selected); d.setDate(selected.getDate()-i); const iso=localISODate(d); const data=state[iso];
     const has=data && (JSON.stringify(data.supp||{}).includes('true') || JSON.stringify(data.train||{}).includes('true') || JSON.stringify(data.cream||{}).includes('true'));
     if(has) count++; else break;
   }
@@ -2008,7 +2020,7 @@ function speakRecipe(){
   const steps=(r.steps||[]).join('. ');
   speak(`${r.title}. Продукты: ${(r.products||[]).join('. ')}. Приправы: ${(r.spices||[]).join('. ')}. Приготовление: ${steps}. Подача: ${r.serving}`);
 }
-function renderCalendar(){ const cal=document.getElementById('calendar'); cal.innerHTML=''; const selected=dateKey(); for(let i=0;i<93;i++){ const d=new Date(START); d.setDate(START.getDate()+i); const iso=d.toISOString().slice(0,10); const data=state[iso]; const has=data && (JSON.stringify(data.supp||{}).includes('true') || JSON.stringify(data.train||{}).includes('true') || JSON.stringify(data.cream||{}).includes('true')); const el=document.createElement('div'); el.className='daycell '+(iso===selected?'active ':'')+(has?'has':''); el.innerHTML=`${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}<small>${DAYS[d.getDay()].slice(0,2)}</small>`; el.onclick=()=>{setDateAndDay(iso); switchTab('train');}; cal.appendChild(el); } }
+function renderCalendar(){ const cal=document.getElementById('calendar'); cal.innerHTML=''; const selected=dateKey(); for(let i=0;i<93;i++){ const d=new Date(START); d.setDate(START.getDate()+i); const iso=localISODate(d); const data=state[iso]; const has=data && (JSON.stringify(data.supp||{}).includes('true') || JSON.stringify(data.train||{}).includes('true') || JSON.stringify(data.cream||{}).includes('true')); const el=document.createElement('div'); el.className='daycell '+(iso===selected?'active ':'')+(has?'has':''); el.innerHTML=`${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}<small>${DAYS[d.getDay()].slice(0,2)}</small>`; el.onclick=()=>{setDateAndDay(iso); switchTab('train');}; cal.appendChild(el); } }
 function voiceDefaults(){ return {mode:'coach', rate:.88, pitch:.95, volume:1, countdown:true, repeat:true}; }
 function voiceSettings(){ return {...voiceDefaults(), ...(prefs.voice||{})}; }
 function saveVoiceSettings(){
@@ -2061,11 +2073,11 @@ function updateVoiceStatus(){
   el.textContent=s.mode==='off' ? names.off : `${names[s.mode] || names.coach} · ${v ? v.name : 'голос загружается'}`;
 }
 function normalizeSpeechText(text, opts={}){
-  let t=String(text||'').replace(/×/g,' на ').replace(/[🔥🪢✅➡️🔊🏋️💊🍽️📅📊🧹⬇️⬆️🖨️⏰]/g,'').replace(/—/g,' пауза ').replace(/s+/g,' ').trim();
+  let t=String(text||'').replace(/×/g,' на ').replace(/[🔥🪢✅➡️🔊🏋️💊🍽️📅📊🧹⬇️⬆️🖨️⏰]/g,'').replace(/—/g,' пауза ').replace(/\s+/g,' ').trim();
   const mode=voiceSettings().mode;
   if(mode==='coach' && !opts.signal){
     t=t.replace(/Техника:/i,'').replace(/Повторов:/i,'Повторы:');
-    if(t.length>180) t=t.slice(0,180).replace(/[,.;:]?s+S*$/,'')+'.';
+    if(t.length>180) t=t.slice(0,180).replace(/[,.;:]?\s+\S*$/,'')+'.';
   }
   if(mode==='quiet' && !opts.signal) return '';
   return t;
@@ -2116,9 +2128,21 @@ function speakCurrent(){
     : `${e.name}. Подход ${selectedSet}. ${e.reps} повторов. ${e.note}`;
   speak(text, {priority:true});
 }
-function exportData(){ const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='upr_progress_export.json'; a.click(); }
+function exportData(){ const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='upr_progress_export.json'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href), 1000); }
 function importData(){ document.getElementById('importFile').click(); }
-document.getElementById('importFile').onchange=async(e)=>{ const f=e.target.files[0]; if(!f) return; const txt=await f.text(); state=JSON.parse(txt); save(); renderAll(); };
+document.getElementById('importFile').onchange=async(e)=>{
+  const f=e.target.files[0]; if(!f) return;
+  try{
+    const txt=await f.text();
+    const imported=JSON.parse(txt);
+    if(!imported || typeof imported !== 'object' || Array.isArray(imported)) throw new Error('Bad JSON shape');
+    state=imported; save(); renderAll();
+  }catch(err){
+    alert('Не удалось импортировать JSON. Проверь файл экспорта УПР.');
+  }finally{
+    e.target.value='';
+  }
+};
 function resetDay(){ if(confirm('Сбросить выполнение за выбранную дату?')){ delete state[dateKey()]; save(); renderAll(); } }
 document.addEventListener('keydown',(ev)=>{
   const tag=(ev.target?.tagName||'').toLowerCase();
