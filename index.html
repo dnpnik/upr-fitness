@@ -460,7 +460,6 @@ function browserNotify(text){
   try{
     if(!('Notification' in window)) return;
     if(Notification.permission === 'granted') new Notification('УПР: отдых закончен', {body:text, silent:false});
-    else if(Notification.permission !== 'denied') Notification.requestPermission().then(p=>{ if(p==='granted') new Notification('УПР: отдых закончен', {body:text, silent:false}); });
   }catch(e){}
 }
 function finishRest(reason='timer'){
